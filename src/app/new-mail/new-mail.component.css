@@ -1,0 +1,23 @@
+div{
+
+   margin: auto; 
+   margin-top: 50px;
+   background-color: rgb(151, 151, 233);
+    width: 800px;
+}
+
+textarea{
+    
+   color: rgb(26, 21, 21);
+}
+
+button{
+  
+  color:black;
+}
+
+p{
+    text-align: center;
+    width: 200px;
+    color: black;
+}

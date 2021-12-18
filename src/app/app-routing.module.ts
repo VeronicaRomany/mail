@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { NewMailComponent } from './new-mail/new-mail.component';
+
+
+
+const routes: Routes = [
+  { path: 'NewMail', component: NewMailComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
