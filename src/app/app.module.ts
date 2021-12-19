@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StartComponent } from './start/start.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { NewMailComponent } from './new-mail/new-mail.component';
+import { TableComponent } from './table/table.component';
 
 
 
@@ -16,7 +17,8 @@ import { NewMailComponent } from './new-mail/new-mail.component';
     AppComponent,
     StartComponent,
     NavigationBarComponent,
-    NewMailComponent
+    NewMailComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
