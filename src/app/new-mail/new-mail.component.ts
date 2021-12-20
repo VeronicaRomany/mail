@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-export class NewMail {
-  constructor() { 
-    this.sender= 'to'
-    this.subject = 'subject'
-    this.text = 'text'
-  }
-  sender: string;
-  subject:string;
-  text:string; 
+class NewMail {
+  sender!: string;
+  subject!:string;
+  text!:string; 
 }
+
 @Component({
   selector: 'app-new-mail',
   templateUrl: './new-mail.component.html',

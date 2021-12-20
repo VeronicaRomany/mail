@@ -7,9 +7,9 @@ import { StartComponent } from './start/start.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { NewMailComponent } from './new-mail/new-mail.component';
 import { TableComponent } from './table/table.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
-
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -18,12 +18,13 @@ import { TableComponent } from './table/table.component';
     StartComponent,
     NavigationBarComponent,
     NewMailComponent,
-    TableComponent
+    TableComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-   
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
