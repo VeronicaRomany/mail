@@ -31,7 +31,7 @@ export class TableComponent implements OnInit {
 
   // Append a text node to the cell
   let newText1 = document.createTextNode('newsubject');
-  newCell1.appendChild(newText);
+  newCell1.appendChild(newText1);
   }
 
 }
