@@ -11,11 +11,15 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
   }
+    emails = [
+      {name:"mark", subject:"OOP"},
+      {name:"vero", subject:"Numerical"}
+    ]
+  add(){
 
-  add(tableID: string){
   console.log("ana geeeeet")
      // Get a reference to the table
-  var tableRef: HTMLTableElement = <HTMLTableElement> document.getElementById(tableID);
+  var tableRef: HTMLTableElement = <HTMLTableElement> document.getElementById('t');
 
   // Insert a row at the end of the table
   let newRow = tableRef.insertRow(-1);

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 let  mails: NewMail[]=[];
-class NewMail {
+export class NewMail {
   constructor() { 
-    this.sender="f"
-    this.subject="d"
-    this.text="c"
+    this.sender=""
+    this.subject=""
+    this.text=""
   }
   sender: string;
   subject:string;
@@ -18,7 +18,10 @@ class NewMail {
 })
 
 export class NewMailComponent implements OnInit {
- 
+  sender="";
+  subject=""
+  text = "";
+
   constructor() { }
  
   ngOnInit(): void {
@@ -29,13 +32,15 @@ export class NewMailComponent implements OnInit {
     var  t= ((document.getElementById("Too") as HTMLInputElement).value);
     var  s= ((document.getElementById("Subj") as HTMLInputElement).value);
     var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
-   
+    
     const m = new NewMail()
     //m.sender= t.textContent
    m.sender= t;
    m.subject=s;
    m.text=txt;
    mails.push(m)
+   //console.log(mails)
+   
      
    }
 }

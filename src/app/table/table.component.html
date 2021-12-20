@@ -1,8 +1,16 @@
 <p>table works!</p>
-<table id="t" style="width:100%">
+<table id="t" type ="table"style="width:100%">
     <tr>
         <th style="width:20%">Sender</th>
         <th>Subject</th>
     </tr>
+    <tr *ngFor ="let item of emails">
+        <td>{{item.name}}</td>
+        <td>{{item.subject}}</td>
+        <td>
+            <button class="btn btn-primary" >View</button>
+            <button class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
   </table>
-  <button (click)="add('t')">Add</button>
+  <button (click)="add()">Add</button>
