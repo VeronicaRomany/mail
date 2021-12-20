@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-class NewMail {
+export class NewMail {
+  constructor() { 
+    this.sender= 'to'
+    this.subject = 'subject'
+    this.text = 'text'
+  }
   sender: string;
   subject:string;
   text:string; 
