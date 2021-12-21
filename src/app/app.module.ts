@@ -10,6 +10,7 @@ import { TableComponent } from './table/table.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 
 import {HttpClientModule} from '@angular/common/http';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
     NewMailComponent,
     TableComponent,
     FileUploadComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

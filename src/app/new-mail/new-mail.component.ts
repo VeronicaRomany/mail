@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { FileUploadService } from '../file-upload/file-upload.service';
 let  mails: NewMail[]=[];
 export class NewMail {
   constructor() { 
@@ -29,12 +29,15 @@ const m = new NewMail()
 
 export class NewMailComponent implements OnInit {
   public attach="";
-  c = ""
-  constructor() { }
  
-  ngOnInit(): void {
-   
-  
+  c:string=""
+  constructor(private router : Router) { 
+      
+      this.c=  this.router.getCurrentNavigation()!.extras.fragment as string
+      
+  }
+
+  ngOnInit(): void { 
   }
   mail1(){
     console.log(this.attach)

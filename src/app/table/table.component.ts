@@ -42,6 +42,16 @@ export class TableComponent implements OnInit {
       this.lastId=this.emails[index+1].id
     }
   }
+  viewPrev(ID:any){
+    const index = this.emails.findIndex(item => item.id === ID);
+    if(index!=0){
+      this.messageviewname="From: \t"+this.emails[index-1].name;
+      this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
+      this.messageviewmail=this.emails[index-1].mail;
+      this.lastId=this.emails[index-1].id
+    }
+  }
+
   delete(ID:any){
    //const index = this.emails.findIndex(item => item.id === ID);
    //this.emails.splice(index,1)
