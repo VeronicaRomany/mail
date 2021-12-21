@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { last } from 'rxjs';
 
 @Component({
@@ -7,7 +8,9 @@ import { last } from 'rxjs';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
- messageview:String=""
+ messageviewname:String=""
+ messageviewsubject:String=""
+ messageviewmail:String=""
  lastId:string=""
   constructor() { }
   
@@ -17,18 +20,22 @@ export class TableComponent implements OnInit {
       {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
       {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
       {name:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-      {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs;ahf'a"}
+      {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
     ]
 
   view(ID:any){
     this.lastId=ID
     const index = this.emails.findIndex(item => item.id === ID);
-    this.messageview=this.emails[index].mail;
+    this.messageviewname="From : \t"+this.emails[index].name;
+    this.messageviewsubject="Subject : \t"+this.emails[index].subject;
+    this.messageviewmail=this.emails[index].mail;
   }
   viewNext(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=this.emails.length-1){
-      this.messageview=this.emails[index+1].mail;
+      this.messageviewname="From: \t"+this.emails[index+1].name;
+      this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
+      this.messageviewmail=this.emails[index+1].mail;
       this.lastId=this.emails[index+1].id
     }
   }
