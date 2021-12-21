@@ -6,15 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
+ messageview:String=""
   constructor() { }
-
+  
   ngOnInit(): void {
   }
     emails = [
-      {name:"mark", subject:"OOP"},
-      {name:"vero", subject:"Numerical"}
+      {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
+      {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"}
     ]
+
+  view(ID:any){
+    const index = this.emails.findIndex(item => item.id === ID);
+    this.messageview=this.emails[index].mail;
+    
+  }
   add(){
 
   console.log("ana geeeeet")
