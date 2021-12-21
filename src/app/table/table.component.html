@@ -12,6 +12,11 @@
             <button class="btn btn-danger">Delete</button>
         </td>
     </tr>
+  
   </table>
-  <button (click)="add()">Add</button>
-  <h1>{{messageview}}</h1>
+  <div>
+    <h1>{{messageview}}</h1>
+    <button (click)="viewNext('{{lastId}}')">Next</button>
+  </div>
+ 
+  

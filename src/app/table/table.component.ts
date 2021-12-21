@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
  messageview:String=""
+ lastId:string=""
   constructor() { }
   
   ngOnInit(): void {
@@ -17,8 +18,15 @@ export class TableComponent implements OnInit {
     ]
 
   view(ID:any){
+    this.lastId=ID
     const index = this.emails.findIndex(item => item.id === ID);
     this.messageview=this.emails[index].mail;
+    
+  }
+  viewNext(ID:any){
+    console.log(ID.value)
+    const index = this.emails.findIndex(item => item.id === ID);
+    this.messageview=this.emails[index+1].mail;
     
   }
   add(){
