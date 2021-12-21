@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { FileUploadService } from './file-upload.service';
   
 @Component({
@@ -6,19 +7,22 @@ import { FileUploadService } from './file-upload.service';
     templateUrl: './file-upload.component.html',
     styleUrls: ['./file-upload.component.css']
 })
+
+
 export class FileUploadComponent  {   //implements OnInit
-  
-    // Variable to store shortLink from api response
     shortLink: string = "";
+    // Variable to store shortLink from api response
+    
     loading: boolean = false; // Flag variable
     file: File = {} as File; // Variable to store file
   
     // Inject service 
     constructor(private fileUploadService: FileUploadService) { }
   
+    @Output() public link = new EventEmitter();
     //ngOnInit(): void {
     //}
-  
+    
     // On file Select
     onChange(event:any){
         this.file = event.target.files[0];
@@ -34,10 +38,11 @@ export class FileUploadComponent  {   //implements OnInit
   
                     // Short link via api response
                     this.shortLink = event.link;
-  
+                    this.link.emit(event.link)
                     this.loading = false; // Flag variable 
                 }
             }
         );
+        
     }
 }

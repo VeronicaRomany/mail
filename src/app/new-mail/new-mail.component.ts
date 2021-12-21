@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import {FileUploadComponent} from 'src/app/file-upload/file-upload.component'
+import { FileUploadService } from '../file-upload/file-upload.service';
 let  mails: NewMail[]=[];
 export class NewMail {
   constructor() { 
     this.sender=""
+    this.reciever=""
     this.subject=""
-    this.text=""
+    this.body=""
+    this.attachement=""
+    this.priority=0;
+
   }
   sender: string;
+  reciever :string;
   subject:string;
-  text:string; 
+  body:string; 
+  attachement:string;
+  priority:any;
+  date:any;
 }
-
+const m = new NewMail()
 @Component({
   selector: 'app-new-mail',
   templateUrl: './new-mail.component.html',
@@ -18,9 +28,7 @@ export class NewMail {
 })
 
 export class NewMailComponent implements OnInit {
-  sender="";
-  subject=""
-  text = "";
+  public attach="";
 
   constructor() { }
  
@@ -29,17 +37,19 @@ export class NewMailComponent implements OnInit {
   
   }
   mail1(){
+    console.log(this.attach)
     var  t= ((document.getElementById("Too") as HTMLInputElement).value);
     var  s= ((document.getElementById("Subj") as HTMLInputElement).value);
     var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
+    var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
-    const m = new NewMail()
-    //m.sender= t.textContent
-   m.sender= t;
-   m.subject=s;
-   m.text=txt;
-   mails.push(m)
-   //console.log(mails)
+    m.priority=pr
+    m.reciever=t
+    m.subject=s
+    m.body=txt
+    m.attachement=this.attach
+    console.log(m)
+   
    
      
    }

@@ -10,7 +10,7 @@ export class FileUploadService {
   baseApiUrl = "https://file.io"
     
   constructor(private http:HttpClient) { }
-  
+ 
   // Returns an observable
   upload(file :any):Observable<any> {
   
