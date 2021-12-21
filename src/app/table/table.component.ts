@@ -30,6 +30,9 @@ export class TableComponent implements OnInit {
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
     this.messageviewmail=this.emails[index].mail;
   }
+  msg(name:string){
+    console.log(name)
+  }
   viewNext(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=this.emails.length-1){

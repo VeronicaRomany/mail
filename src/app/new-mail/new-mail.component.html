@@ -10,7 +10,7 @@
     <option value="low">Low</option>
   </select>
     <br> <br>
-    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop"></textarea>
+    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop">{{c}}</textarea>
     <br> <br> 
     <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject"></textarea>
     <br> <br>
@@ -18,6 +18,6 @@
     <br> <br>
    
     <app-file-upload (link)="attach=$event"></app-file-upload>
-
+ 
     <button (click)="mail1()">Send</button>
 </div>

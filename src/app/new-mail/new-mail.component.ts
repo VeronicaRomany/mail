@@ -29,7 +29,7 @@ const m = new NewMail()
 
 export class NewMailComponent implements OnInit {
   public attach="";
-
+  c = ""
   constructor() { }
  
   ngOnInit(): void {
