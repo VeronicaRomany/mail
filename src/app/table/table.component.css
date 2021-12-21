@@ -1,5 +1,5 @@
 .search{
-  width: 60%;
+  width: 30%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -23,7 +23,12 @@ table, th {
    font-size: large;
   }
 
-
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
 .btn1{
   color: #000000;
   background-color: #ffffff;

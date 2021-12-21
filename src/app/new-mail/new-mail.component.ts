@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FileUploadComponent} from 'src/app/file-upload/file-upload.component'
+
 import { FileUploadService } from '../file-upload/file-upload.service';
 let  mails: NewMail[]=[];
 export class NewMail {
