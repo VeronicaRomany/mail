@@ -25,6 +25,9 @@ export class TableComponent implements OnInit {
     const index = this.emails.findIndex(item => item.id === ID);
     this.messageview=this.emails[index].mail;
   }
+  msg(name:string){
+    console.log(name)
+  }
   viewNext(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=this.emails.length-1){

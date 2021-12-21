@@ -1,16 +1,16 @@
 
 <form class="form-inline md-form mr-auto mb-4">
   <input class="search" type="text" style="margin:5px;" placeholder="Search" >
-  <button class="search-btn" style="margin:5px;">Search</button>
+  <button  class="search-btn" style="margin:5px;">Search</button>
   <button class="clear-btn" >clear</button>
 </form>
 
 <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
     <thead class="thead">
     <tr>
-        <th style="width:20%">Sender</th>
-        <th style="width:60%">Subject</th>
-        <th style="width:60%"></th>
+        <th style="width:130px">Sender</th>
+        <th style="width:410px">Subject</th>
+        <th style="width:129px"></th>
         
     </tr>
     
@@ -18,7 +18,7 @@
     <tr *ngFor ="let item of emails">
         <td >{{item.name}}</td>
         <td>{{item.subject}}</td>
-        
+        <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>
             <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
             <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
         
@@ -37,5 +37,8 @@
       </div>
      
   </table>
+  
+ 
+ 
  
   
