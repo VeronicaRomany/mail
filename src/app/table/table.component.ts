@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -14,20 +15,22 @@ export class TableComponent implements OnInit {
   }
     emails = [
       {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
-      {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"}
+      {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
+      {name:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
+      {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs;ahf'a"}
     ]
 
   view(ID:any){
     this.lastId=ID
     const index = this.emails.findIndex(item => item.id === ID);
     this.messageview=this.emails[index].mail;
-    
   }
   viewNext(ID:any){
-    console.log(ID.value)
     const index = this.emails.findIndex(item => item.id === ID);
-    this.messageview=this.emails[index+1].mail;
-    
+    if(index!=this.emails.length-1){
+      this.messageview=this.emails[index+1].mail;
+      this.lastId=this.emails[index+1].id
+    }
   }
   add(){
 

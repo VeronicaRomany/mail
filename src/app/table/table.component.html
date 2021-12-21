@@ -1,4 +1,4 @@
-<p>table works!</p>
+<h1>Welcome !</h1>
 <table id="t" type ="table"style="width:100%">
     <tr>
         <th style="width:20%">Sender</th>
@@ -14,9 +14,15 @@
     </tr>
   
   </table>
+
+  <div style="display: none;">
+    {{lastId}}
+  </div>
   <div>
+     
     <h1>{{messageview}}</h1>
-    <button (click)="viewNext('{{lastId}}')">Next</button>
+
+    <button (click)="viewNext(lastId)">Next</button>
   </div>
  
   
