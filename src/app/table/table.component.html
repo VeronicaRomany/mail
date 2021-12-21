@@ -9,7 +9,7 @@
         <td>{{item.subject}}</td>
         <td>
             <button class="btn btn-primary" (click)="view(item.id)" >View</button>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" (click)="delete(item.id)" >Delete</button>
         </td>
     </tr>
   

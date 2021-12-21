@@ -32,6 +32,13 @@ export class TableComponent implements OnInit {
       this.lastId=this.emails[index+1].id
     }
   }
+  delete(ID:any){
+   //const index = this.emails.findIndex(item => item.id === ID);
+   //this.emails.splice(index,1)
+  
+    this.emails = []
+
+  }
   add(){
 
   console.log("ana geeeeet")
