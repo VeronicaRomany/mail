@@ -5,6 +5,7 @@
     box-sizing: border-box;
   }
   
+  
   table, th {
       border: 2px solid black;
       text-align: center;
@@ -96,21 +97,21 @@
   
   }
 
-  box-sizing ::after border-box
-
+  
+  
+  
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
-  background-color: #555;
-  color: white;
+  background-color: white;
+  border-radius: 12px;
   padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
+  transition-duration: 0.4s;
+  border-color: green;
 }
+ .open-button:hover{
+  background-color: #4CAF50; /* Green */
+  color: white;
+ }
 
 /* The popup form - hidden by default */
 .form-popup {

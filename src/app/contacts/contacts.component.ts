@@ -45,6 +45,6 @@ newContact(){
   con.mail=MAIL
   con.name=NAME
   console.log(con)
-  console.log("hiiiiiiii")
+
 }
 }
