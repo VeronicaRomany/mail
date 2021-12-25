@@ -1,10 +1,9 @@
-
-
-
-<form class="form-inline md-form mr-auto mb-4">
+<div class="form-inline md-form mr-auto mb-4">
     <input class="search" type="text" style="margin:5px;" placeholder="Search" >
-    <button  class="search-btn" style="margin:5px;">Search</button>
-  </form>
+    <button  class="search-btn" style="margin-right: 10px;">Search</button>
+    <button class="open-button" (click)="openForm() ">Add Contact</button>
+</div>
+
   
   
   <div style="display: flexbox;">
@@ -13,34 +12,39 @@
       <thead class="thead">
       <tr>
           <th style="width:130px">Name</th>
-          <th style="width:410px">Mail</th>
-          <th style="width:129px"></th>
+          <th style="width: 550px;">Mail</th>
+          
           
           
       </tr>
          </thead>
-      <tr *ngFor ="let item of Contacts">
-          <td >{{item.name}}</td>
-          <td>{{item.Mail}}</td>
-          <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.Mail)" >Send mail</a> 
-      </tr>
-      
+      <tr *ngFor ="let item of Contacts"  >
+            <td>{{item.name}}</td>
+             <td>
+              <div *ngFor ="let x of item.Accounts">
+                {{x}} &nbsp; &nbsp; &nbsp;
+                <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(x)" >send mail</a> 
+            </div>
+             </td>
+          </tr>
   </table>
 
-  <button class="open-button" (click)="openForm()">Add Contact</button>
   <div class="form-popup" id="myForm">
-    <form  class="form-container">
+    <div  class="form-container">
       <h1>New Contact</h1>
   
       <label for="email"><b>Name</b></label>
       <input type="text" placeholder="Name" name="email" id="Name"required>
   
       <label for="psw"><b>Mail</b></label>
-      <input type="text" placeholder="Enter E-mail" name="psw" id="Mail" required>
-  
-      <button type="submit" class="btn" (click)="newContact()">Add</button>
+      <button  class="btn4" >+</button>
+      
+        <input  type="text" placeholder="Enter E-mail" name="psw" id="Mail" required>
+    
+      
+      <button  class="btn" (click)="newContact()">Add</button>
       <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
-    </form>
+    </div>
   </div>
   
   

@@ -52,8 +52,7 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     console.log(m)
-   
-   
-     
+
+
    }
 }

@@ -15,16 +15,18 @@ const con = new Contact();
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.css']
 })
-export class ContactsComponent{
+export class ContactsComponent implements OnInit{
   
   constructor(private router: Router, private route: ActivatedRoute) { }
 
- 
-  Contacts = [
-    {name:"Mark Ehab", Mail:"mark1@oop.com"},
-    {name:"Tony", Mail:"tony11@oop.com"},
-  ]
 
+   
+  Contacts = [
+    {name:"Mark", Accounts: ["mark@oop.com","Markoo@oop.com"]},
+    {name:"Tony", Accounts: ["t@oop.com"]}
+  ]
+  ngOnInit(): void { 
+  }
 
 msg(mail:string){
   
@@ -36,15 +38,19 @@ openForm() {
 }
 
 closeForm() {
-  document!.getElementById("myForm")!.style.display = "none";
+  document.getElementById("myForm")!.style.display = "none";
 }
 
 newContact(){
   var  NAME= ((document.getElementById("Name") as HTMLInputElement).value);
   var  MAIL= ((document.getElementById("Mail") as HTMLInputElement).value);
+  
   con.mail=MAIL
   con.name=NAME
   console.log(con)
-
 }
+
+
+
+
 }
