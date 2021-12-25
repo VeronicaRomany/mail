@@ -11,6 +11,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import { ContactsComponent } from './contacts/contacts.component';
+import { DraftComponent } from './draft/draft.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     NewMailComponent,
     TableComponent,
     FileUploadComponent,
-    ContactsComponent
+    ContactsComponent,
+    DraftComponent
   ],
   imports: [
     BrowserModule,

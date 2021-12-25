@@ -21,9 +21,25 @@
       <tr *ngFor ="let item of Contacts">
           <td >{{item.name}}</td>
           <td>{{item.Mail}}</td>
-          <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.Mail)">Send mail</a> <!--"-->
+          <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.Mail)" >Send mail</a> 
       </tr>
   </table>
+
+  <button class="open-button" (click)="openForm()">Add Contact</button>
+  <div class="form-popup" id="myForm">
+    <form  class="form-container">
+      <h1>New Contact</h1>
+  
+      <label for="email"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="email" id="Name"required>
+  
+      <label for="psw"><b>Mail</b></label>
+      <input type="text" placeholder="Enter E-mail" name="psw" id="Mail" required>
+  
+      <button type="submit" class="btn" (click)="newContact()">Add</button>
+      <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+    </form>
+  </div>
   
   
   

@@ -29,14 +29,7 @@
     </tr>
   
      
-  <tr *ngFor ="let item of emails">
-      <td >{{item.name}}</td>
-      <td>{{item.subject}}</td>
-      
-          <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
-          <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
-      
-  </tr>
+  
 
 </table>
 
@@ -61,7 +54,7 @@
      
    <button (click)="viewNext(lastId)">Next</button>
    <button (click)="viewPrev(lastId)">Previous</button>
-   
+
   </div>
   <div style="display: none;">
     {{lastId}}
