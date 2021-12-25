@@ -23,6 +23,8 @@ export class TableComponent implements OnInit {
       {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
     ]
 
+    selected:any=[]
+
   view(ID:any){
     this.lastId=ID
     const index = this.emails.findIndex(item => item.id === ID);
@@ -51,6 +53,14 @@ export class TableComponent implements OnInit {
       this.lastId=this.emails[index-1].id
     }
   }
+
+  toggleEditable(event: any,ID:string) {
+    if ( event.target.checked ) {
+       const index = this.emails.findIndex(item => item.id === ID);
+       this.selected.push(this.emails[index])
+       console.log(this.selected)
+   }
+}
 
   delete(ID:any){
    //const index = this.emails.findIndex(item => item.id === ID);

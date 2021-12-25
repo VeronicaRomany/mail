@@ -9,22 +9,23 @@ import { FileUploadService } from './file-upload.service';
 })
 
 
-export class FileUploadComponent  {   //implements OnInit
+export class FileUploadComponent  {  
     shortLink: string = "";
     // Variable to store shortLink from api response
     
     loading: boolean = false; // Flag variable
-    file: File = {} as File; // Variable to store file
+    file: FileList = {} as FileList; // Variable to store file
   
+   
     // Inject service 
     constructor(private fileUploadService: FileUploadService) { }
   
     @Output() public link = new EventEmitter();
-    //ngOnInit(): void {
-    //}
+    
     
     // On file Select
     onChange(event:any){
+        
         this.file = event.target.files[0];
     }
   

@@ -19,7 +19,7 @@ export class ContactsComponent implements OnInit{
   
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-
+  anotherMail:any
    
   Contacts = [
     {name:"Mark", Accounts: ["mark@oop.com","Markoo@oop.com"]},
@@ -50,7 +50,11 @@ newContact(){
   console.log(con)
 }
 
+NewInput(){
+  this.anotherMail=true
+}
 
-
-
+toggle(){
+  this.anotherMail=!this.anotherMail
+}
 }

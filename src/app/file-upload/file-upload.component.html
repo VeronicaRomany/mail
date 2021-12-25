@@ -1,16 +1,10 @@
 <div class="text-center">
-    <input class="form-control" type="file" 
-            (change)="onChange($event)">
-  
-    <button (click)="onUpload()" 
-        class="btn btn-success">
-        Upload
-    </button>
+    <input class="form-control" type="file"  (change)="onChange($event)"  >
+    <button (click)="onUpload()"  class="btn btn-success" > Upload </button>
 </div>
 
 <!-- Shareable short link of  uoloaded file -->
-<div class="container text-center jumbotron"
-    *ngIf="shortLink">
+<div class="container text-center jumbotron" *ngIf="shortLink">
    <h1>Done</h1>
   <!-- <a href="{{shortLink}}">{{shortLink}}</a> --> 
 </div>

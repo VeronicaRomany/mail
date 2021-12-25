@@ -36,12 +36,12 @@
       <label for="email"><b>Name</b></label>
       <input type="text" placeholder="Name" name="email" id="Name"required>
   
-      <label for="psw"><b>Mail</b></label>
-      <button  class="btn4" >+</button>
-      
+      <label for="psw"><b>Mail</b></label> &nbsp; &nbsp;
+      <button (click)="NewInput()">+</button>
+     <input  type="text" placeholder="Enter E-mail" (onchange)="toggle()" name="psw" id="Mail" required> 
+      <div *ngIf ="anotherMail" >
         <input  type="text" placeholder="Enter E-mail" name="psw" id="Mail" required>
-    
-      
+      </div>
       <button  class="btn" (click)="newContact()">Add</button>
       <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
     </div>
