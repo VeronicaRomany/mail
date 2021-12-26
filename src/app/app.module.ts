@@ -19,7 +19,8 @@ import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NewFolderComponent } from './new-folder/new-folder.component'
+import { NewFolderComponent } from './new-folder/new-folder.component';
+import { TrashComponent } from './trash/trash.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { NewFolderComponent } from './new-folder/new-folder.component'
     DraftComponent,
     LoginComponent,
     RegisterComponent,
-    NewFolderComponent
+    NewFolderComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
