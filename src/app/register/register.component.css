@@ -72,3 +72,9 @@ h2{
     height: 100vh;
 }
 
+.background{
+  background-image: url(5.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
