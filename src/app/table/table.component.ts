@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { last } from 'rxjs';
+
 
 @Component({
   selector: 'app-table',
@@ -12,12 +12,32 @@ export class TableComponent implements OnInit {
  messageviewsubject:String=""
  messageviewmail:String=""
  lastId:string=""
-  http: any;
-  output: any;
-  expression: any;
-  constructor() { }
+ 
+  senderFlag:boolean=false;
+  subjectFlag:boolean=false;
+  priorityFlag:boolean=false;
+  constructor() { 
+    
+  }
   
+ 
   ngOnInit(): void {
+  }
+
+  filterBy(){
+    this.senderFlag=false;
+    this.subjectFlag=false;
+    this.priorityFlag=false;
+    var pr= ((document.getElementById("filter") as HTMLInputElement).value);
+    if(pr=="sender"){
+      this.senderFlag=true;
+    }
+     if(pr=="subject"){
+      this.subjectFlag=true;
+    }
+     if(pr=="priority"){
+        this.priorityFlag=true;
+     }
   }
     emails = [
       {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},

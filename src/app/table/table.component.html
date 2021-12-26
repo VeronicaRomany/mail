@@ -3,7 +3,25 @@
   <input class="search" type="text" style="margin:5px;" placeholder="Search" >
   <button  class="search-btn" style="margin:5px;">Search</button>
   <button class="clear-btn" >clear</button>
+
+  <select id="filter" name="filter" class="dropdown" (change)="filterBy()" >
+    <option value="" disabled selected>Filter By</option>
+    <option value="sender">Sender</option>
+    <option value="subject">Subject</option>
+    <option value="priority">Priority</option>
+  </select>
+
+  <input *ngIf="senderFlag" type="text" placeholder="Sender" class="input">
+  <input *ngIf="subjectFlag" type="text" placeholder="Subject" class="input">
+  <select *ngIf="priorityFlag" name="Priority" id="priority" class="dropdown">
+    <option value="Urgent">Urgent</option>
+    <option value="High">High</option>
+    <option value="Medieum">Medieum</option>
+    <option value="low">Low</option>
+  </select>
 </form>
+
+
 
 
 <div style="display: flexbox;">
