@@ -1,14 +1,13 @@
 .block{
-  width: 320px;
+  width: 350px;
   padding: 10px;
   border: 1px solid gray;
-  height:70% ;
+  height:76% ;
   background-image: url(m.jpg);
   background-position: center ;
   background-size:cover;
   background-repeat: no-repeat;
   box-shadow: 5px 5px 30px;
-  
 } 
 h2{
   color: rgb(255, 255, 255);
