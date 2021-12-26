@@ -14,8 +14,11 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { DraftComponent } from './draft/draft.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card'
+import {MatButtonModule} from '@angular/material/button'
+import {MatInputModule} from '@angular/material/input'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,10 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

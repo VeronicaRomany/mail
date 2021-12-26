@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.img{
+    background-image: url(/src/g.jpg);
+    background-size: cover;
+    height: 100%;
+}
+
+
+button:disabled{
+    background: gray;
+    color:white;
+}

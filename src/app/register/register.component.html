@@ -1,1 +1,16 @@
-<p>register works!</p>
+<div class="wrapper"> 
+    <div class="block">
+       <form [formGroup]="register">
+        <br><br><br>
+           <h2>REGISTER</h2>
+           <br>
+           <input type="text" placeholder="John" class="inp" formControlName="name"/>
+           <input type="text" placeholder="john@example.com" class="inp" formControlName="email">
+           <br>
+           <div class="btns">
+           <button class="btn1"(click)="registerSubmit(register.value)" [disabled]="register.invalid" style="margin-right: 5px;">SIGN UP</button>
+           <button class="btn2"(click)="gotToLogin()">LOGIN</button>
+           </div>
+       </form>
+    </div>
+</div>
