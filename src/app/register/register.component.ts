@@ -31,7 +31,13 @@ check(){
   const body = ((document.getElementById("newMember") as HTMLInputElement).value);
   this.http.post<boolean>('http://localhost:8080/server/user/register', body).subscribe(data =>{
       var success=data
-      console.log(success)
-  })
+      if(data){
+        this.http.post<string>('http://localhost:8080/server/user/login', body).subscribe(data =>{
+          var id = data
+          console.log(id)
+      });
+     
+  }
+})
 }
 }
