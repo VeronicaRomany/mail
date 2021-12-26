@@ -1,23 +1,30 @@
 <app-navigation-bar></app-navigation-bar>
 <div>
     <p>Sending an Email</p>
-    <br>
+    <div class ="container">
+      <br>
     <label for="priority">Choose your mail Priority:</label>
+    
     <select name="Priority" id="priority">
     <option value="Urgent">Urgent</option>
     <option value="High">High</option>
     <option value="Medieum">Medieum</option>
     <option value="low">Low</option>
   </select>
-    <br> <br>
-    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop">{{c}}</textarea>
-    <br> <br> 
-    <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject"></textarea>
-    <br> <br>
-    <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"></textarea>
-    <br> <br>
+  <br><br>
+    <form>
+      <div>
+    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop" style="margin-left: 10px ;">{{c}}</textarea>
+    </div>
+    <br> 
+    <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject" style="margin-left: 10px ;"></textarea>
+    <br> 
+    <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"style="margin-left: 10px ;"></textarea>
+    <br> 
    
     <app-file-upload (link)="attach=$event"></app-file-upload>
  
     <button (click)="mail1()">Send</button>
+  </form>
+  </div>
 </div>
