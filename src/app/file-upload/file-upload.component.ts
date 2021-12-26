@@ -11,6 +11,7 @@ import { FileUploadService } from './file-upload.service';
 
 export class FileUploadComponent  {  
     shortLink: string = "";
+    flag :boolean=false
     // Variable to store shortLink from api response
     
     loading: boolean = false; // Flag variable
@@ -25,7 +26,7 @@ export class FileUploadComponent  {
     
     // On file Select
     onChange(event:any){
-        
+        this.flag=true
         this.file = event.target.files[0];
     }
   

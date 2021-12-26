@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NewFolderComponent } from './new-folder/new-folder.component';
 
 const routes: Routes = [
   { path: 'NewMail', component: NewMailComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'login',component: LoginComponent},
   { path: 'register',component: RegisterComponent},
   {path:'',redirectTo :'login' ,pathMatch:"full"},
-  {path:'navigation' , component: NavigationBarComponent}
+  {path:'navigation' , component: NavigationBarComponent},
+  {path:'createFolder',component:NewFolderComponent}
   ];
 
 @NgModule({

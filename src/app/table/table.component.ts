@@ -63,9 +63,7 @@ export class TableComponent implements OnInit {
 }
 
   delete(ID:any){
-   //const index = this.emails.findIndex(item => item.id === ID);
-   //this.emails.splice(index,1)
-  
+   
     this.emails = []
 
   }

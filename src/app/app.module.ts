@@ -18,11 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NewFolderComponent } from './new-folder/new-folder.component'
 @NgModule({
   declarations: [
     AppComponent,
-    
     NavigationBarComponent,
     NewMailComponent,
     TableComponent,
@@ -30,7 +30,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     ContactsComponent,
     DraftComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewFolderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +42,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[NewFolderComponent]
 })
 export class AppModule { }
