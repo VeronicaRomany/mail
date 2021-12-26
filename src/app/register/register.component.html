@@ -5,8 +5,8 @@
         <br><br><br>
            <h2>REGISTER</h2>
            <br><br>
-           <input  id="newMember" type="text" placeholder="John" class="inp" formControlName="name"/>
-           <input type="text" placeholder="john@example.com" class="inp" formControlName="email">
+           <input type="text" placeholder="John" class="inp" formControlName="name"/>
+           <input type="text" id="newMember" placeholder="john@example.com" class="inp" formControlName="email">
            <br>
            <div class="btns">
            <button class="btn1"(click)="registerSubmit(register.value)" [disabled]="register.invalid" style="margin-right: 5px;">SIGN UP</button>
