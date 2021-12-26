@@ -30,7 +30,10 @@ export class ContactsComponent implements OnInit{
 
 msg(mail:string){
   
-  this.router.navigate(['/NewMail'], { fragment:mail });
+ 
+ // this.router.navigate(['/NewMail'], { fragment:mail });
+ this.router.navigate(['/NewMail'], { state: { reciever: mail }})
+ 
 }
 
 openForm() {

@@ -31,12 +31,17 @@ const m = new NewMail()
 export class NewMailComponent implements OnInit {
   public attach="";
  
-  c:string=""
+  to:string=""
+  sub:string=""
+  text:string=""
   counter:number=0
   constructor(private router : Router) { 
-      
-      this.c=  this.router.getCurrentNavigation()!.extras.fragment as string
-      
+    
+      this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
+      this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
+      this.sub=  this.router.getCurrentNavigation()!.extras.state?.['head'] as string
+    //this.c=  this.router.getCurrentNavigation().extras.state.Mail
+   
   }
 
   ngOnInit(): void { 

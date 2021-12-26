@@ -14,12 +14,12 @@
   <br><br>
     <form>
       <div>
-    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop" style="margin-left: 10px ;">{{c}}</textarea>
+    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop" style="margin-left: 10px ;">{{to}}</textarea>
     </div>
     <br> 
-    <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject" style="margin-left: 10px ;"></textarea>
+    <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject" style="margin-left: 10px ;">{{sub}}</textarea>
     <br> 
-    <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"style="margin-left: 10px ;"></textarea>
+    <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"style="margin-left: 10px ;">{{text}}</textarea>
     <br> 
    
     <app-file-upload (link)="attach=$event"></app-file-upload>
