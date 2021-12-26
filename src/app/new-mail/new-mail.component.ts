@@ -10,7 +10,7 @@ export class NewMail {
     this.body=""
     this.attachement=""
     this.priority=0;
-
+    this.id=0;
   }
   sender: string;
   reciever :string;
@@ -19,6 +19,7 @@ export class NewMail {
   attachement:string;
   priority:any;
   date:any;
+  id:number;
 }
 const m = new NewMail()
 @Component({
@@ -31,6 +32,7 @@ export class NewMailComponent implements OnInit {
   public attach="";
  
   c:string=""
+  counter:number=0
   constructor(private router : Router) { 
       
       this.c=  this.router.getCurrentNavigation()!.extras.fragment as string
@@ -52,6 +54,8 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
+    m.id=this.counter
     console.log(m)
+    this.counter=this.counter+1
    }
 }

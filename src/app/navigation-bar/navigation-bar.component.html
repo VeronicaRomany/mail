@@ -1,7 +1,5 @@
 <nav>
-  <textarea id="in">{{f}}</textarea>
-  <button (click)="addFolder()">+</button>
-
+  
   <ul>
       <li><a routerLink="/Contacts" routerLinkActive="active">Contacts</a></li>
       <li><a routerLink="/table" routerLinkActive="active">Inbox</a></li>
@@ -10,6 +8,11 @@
       <li><a routerLink="/Draft" routerLinkActive="active">Draft</a></li>
       <li><a routerLink="/NewMail" routerLinkActive="active">New mail</a></li>
       <li #newFolder *ngIf="f" > <a routerLink="/createFolder" routerLinkActive="active"> {{f}}</a></li> 
+      
+      <li>
+        <textarea id="in">{{f}}</textarea>
+        <button (click)="addFolder()">+</button>
+      </li>
     </ul>
       
 </nav>

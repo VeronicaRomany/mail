@@ -10,7 +10,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
 register:any = FormGroup;
 
- confirm:boolean=false
   constructor(private fb:FormBuilder,private router: Router,private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -21,24 +20,22 @@ register:any = FormGroup;
   }
 
   registerSubmit(data:any){
-
+    const body = ((document.getElementById("newMember") as HTMLInputElement).value);
+    this.http.post<boolean>('http://localhost:8080/server/user/register', body).subscribe(next =>{
+      console.log(next)
+      if(next){
+           this.http.post('http://localhost:8080/server/user/login',body,{responseType:'text'}).subscribe(response =>{
+            //var id= JSON.stringify(response)
+  
+            console.log(response)
+        });
+       
+    }
+  })
   }
 gotToLogin(){
   this.router.navigate(['login']);
 }
 
-check(){
-  const body = ((document.getElementById("newMember") as HTMLInputElement).value);
-  this.http.post<boolean>('http://localhost:8080/server/user/register', body).subscribe(next =>{
-    console.log(next)
-    if(next){
-         this.http.post('http://localhost:8080/server/user/login',body,{responseType:'text'}).subscribe(response =>{
-          //var id= JSON.stringify(response)
 
-          console.log(response)
-      });
-     
-  }
-})
-}
 }
