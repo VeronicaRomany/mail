@@ -12,6 +12,9 @@ export class TableComponent implements OnInit {
  messageviewsubject:String=""
  messageviewmail:String=""
  lastId:string=""
+  http: any;
+  output: any;
+  expression: any;
   constructor() { }
   
   ngOnInit(): void {
@@ -65,6 +68,7 @@ export class TableComponent implements OnInit {
   delete(ID:any){
    
     this.emails = []
+   
 
   }
   add(){

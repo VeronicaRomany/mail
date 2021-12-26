@@ -5,12 +5,13 @@
         <br><br><br>
            <h2>REGISTER</h2>
            <br><br>
-           <input type="text" placeholder="John" class="inp" formControlName="name"/>
+           <input  id="newMember" type="text" placeholder="John" class="inp" formControlName="name"/>
            <input type="text" placeholder="john@example.com" class="inp" formControlName="email">
            <br>
            <div class="btns">
            <button class="btn1"(click)="registerSubmit(register.value)" [disabled]="register.invalid" style="margin-right: 5px;">SIGN UP</button>
            <button class="btn2"(click)="gotToLogin()">LOGIN</button>
+           <button class="btn3"(click)="check()">start</button>
            </div>
        </form>
     </div>
