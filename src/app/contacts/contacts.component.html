@@ -17,8 +17,6 @@
     </select>
 
     <button class="open-button" (click)="openForm() ">Add Contact</button>
-    
-
 </div>
 
 <input *ngIf="EDIT"  type="text" class="edit" id="edit" placeholder="New Name" >
@@ -64,7 +62,7 @@
       <button (click)="NewInput()">+</button>
      <input  type="text" placeholder="Enter E-mail" (onchange)="toggle()" name="psw" id="Mail" required> 
       <div *ngIf ="anotherMail" >
-        <input  type="text" placeholder="Enter E-mail" name="psw" id="Mail" required>
+        <input  type="text" placeholder="Enter E-mail" name="psw" id="Mail2" required>
       </div>
       <button  class="btn" (click)="newContact()">Add</button>
       <button type="button" class="btn cancel" (click)="closeForm()">Close</button>

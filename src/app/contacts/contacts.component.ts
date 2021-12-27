@@ -3,10 +3,12 @@ import { ActivatedRoute,  NavigationExtras, Router } from '@angular/router';
 export class Contact{
   constructor(){
     this.name=""
-    this.mail=""
+    this.mail1=""
+    this.mail2=""
   }
   name : string;
-  mail : string
+  mail1: string;
+  mail2:string;
 }
 
 const con = new Contact();
@@ -120,12 +122,20 @@ closeForm() {
 }
 
 newContact(){
-  var  NAME= ((document.getElementById("Name") as HTMLInputElement).value);
-  var  MAIL= ((document.getElementById("Mail") as HTMLInputElement).value);
+
+
+  con.name= ((document.getElementById("Name") as HTMLInputElement).value);
+  con.mail1= ((document.getElementById("Mail") as HTMLInputElement).value);
+  if(this.anotherMail){
+    con.mail2=((document.getElementById("Mail2") as HTMLInputElement).value);
+  }else{
+    con.mail2=""
+  }
   
-  con.mail=MAIL
-  con.name=NAME
+ 
   console.log(con)
+  //send request with con
+  // send request get contact
 }
 
 NewInput(){
