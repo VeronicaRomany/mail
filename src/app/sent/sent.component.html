@@ -1,1 +1,66 @@
-<p>sent works!</p>
+
+<form class="form-inline md-form mr-auto mb-4">
+    <input class="search" type="text" style="margin:5px;" placeholder="Search" >
+    <button  class="search-btn" style="margin:5px;">Search</button>
+    <button class="clear-btn" >clear</button>
+  </form>
+  
+  
+  <div style="display: flexbox;">
+    
+  <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
+      <thead class="thead">
+      <tr>
+         <th style="width: 50px">Select</th>
+          <th style="width:130px">Sender</th>
+          <th style="width:410px">Subject</th>
+          <th style="width:129px"></th>
+          
+      </tr>
+         </thead>
+  
+  
+      <tr *ngFor ="let item of emails" style="color: white; background-color: grey;">
+          <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
+          <td>{{item.name}}</td>
+          <td>{{item.subject}}</td>
+          <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
+              <button  type="submit" class="btn1" style="margin:2px; " (click)="view(item.id)" >View</button>
+              <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
+          
+      </tr>
+    
+       
+    
+  
+  </table>
+  
+  
+  <div class="right">
+    <div class="mailup" style="color: aliceblue;">
+      <div></div>
+      <p>
+        Mail 
+      </p>
+    </div>
+    <div style="color: white; background-color: grey;">
+       
+      
+      
+        <br> <br><br>
+       
+      <h1>{{messageviewname}}</h1>
+      <p>{{messageviewsubject}}</p>
+      <p>{{messageviewmail}}</p>
+     
+       
+     <button (click)="viewNext(lastId)">Next </button>
+     <button (click)="viewPrev(lastId)">Previous</button>
+  
+    </div>
+    <div style="display: none;">
+      {{lastId}}
+    </div>
+  </div>
+  </div>
+  
