@@ -22,7 +22,7 @@
        </thead>
 
 
-    <tr *ngFor ="let item of emails" style="color: white;">
+    <tr *ngFor ="let item of emails" style="color: white; background-color: grey;">
         <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
         <td>{{item.priority}}</td>
         <td>{{item.name}}</td>
@@ -46,7 +46,7 @@
       Mail 
     </p>
   </div>
-  <div style="color: white;">
+  <div style="color: white; background-color: grey;">
      
     
     
