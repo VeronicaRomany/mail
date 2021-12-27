@@ -10,10 +10,11 @@ export class TrashComponent implements OnInit {
   messageviewsubject:String=""
   messageviewmail:String=""
   lastId:string=""
-   http: any;
-   output: any;
-   expression: any;
-   constructor() { }
+  multiMails:string=""
+  select :boolean=false;
+   constructor() {
+ 
+    }
    
    ngOnInit(): void {
    }
@@ -25,7 +26,7 @@ export class TrashComponent implements OnInit {
      ]
  
      selected:any=[]
- 
+     
    view(ID:any){
      this.lastId=ID
      const index = this.emails.findIndex(item => item.id === ID);
@@ -57,12 +58,27 @@ export class TrashComponent implements OnInit {
  
    toggleEditable(event: any,ID:string) {
      if ( event.target.checked ) {
+        this.select=true;
         const index = this.emails.findIndex(item => item.id === ID);
         this.selected.push(this.emails[index])
         console.log(this.selected)
     }
  }
- 
+
+
+ multipleMails(){
+   
+   for(var i=0 ; i<this.selected.length;i++){
+     if (i==0){
+       this.multiMails=this.selected[i].name
+     }else{
+       this.multiMails=this.multiMails+" , "+this.selected[i].name
+     }
+   }
+   console.log(this.multiMails)
+ }
+
+
    delete(ID:any){
     
      this.emails = []

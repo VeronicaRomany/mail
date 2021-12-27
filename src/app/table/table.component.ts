@@ -12,14 +12,13 @@ export class TableComponent implements OnInit {
  messageviewsubject:String=""
  messageviewmail:String=""
  lastId:string=""
- 
+ multiMails:string=""
  senderFlag:boolean=false;
  subjectFlag:boolean=false;
  priorityFlag:boolean=false;
-
+ isSomethingSelected:boolean=false;
  sortSelector:string="";
   constructor() { 
-    
   }
   
  
@@ -84,13 +83,36 @@ export class TableComponent implements OnInit {
     }
   }
 
+  multipleMails(){
+   this.multiMails=""
+    for(var i=0 ; i<this.selected.length;i++){
+      if (i==0){
+        this.multiMails=this.selected[i].id
+      }else{
+        this.multiMails=this.multiMails+" , "+this.selected[i].id
+      }
+    }
+    console.log(this.multiMails)
+    this.isSomethingSelected=false;
+  }
+
   toggleEditable(event: any,ID:string) {
     if ( event.target.checked ) {
+       this.isSomethingSelected=true;
        const index = this.emails.findIndex(item => item.id === ID);
        this.selected.push(this.emails[index])
        console.log(this.selected)
+   }else{
+    
+    
+    const index = this.emails.findIndex(item => item.id === ID);
+    this.selected.pop(this.emails[index])
+    console.log(this.selected)
+    if(this.selected.length==0){
+      this.isSomethingSelected=false;
+    }
    }
-}
+  }
 
   delete(ID:any){
    
