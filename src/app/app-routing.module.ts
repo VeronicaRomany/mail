@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { NewFolderComponent } from './new-folder/new-folder.component';
 import { TrashComponent } from './trash/trash.component';
+import { SentComponent } from './sent/sent.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:'',redirectTo :'login' ,pathMatch:"full"},
   {path:'navigation' , component: NavigationBarComponent},
   {path:'createFolder',component:NewFolderComponent},
-  {path:'trash',component:TrashComponent}
+  {path:'trash',component:TrashComponent},
+  {path:'sent',component:SentComponent}
   ];
 
 @NgModule({
