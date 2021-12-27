@@ -34,18 +34,26 @@ export class NewMailComponent implements OnInit {
   to:string=""
   sub:string=""
   text:string=""
+  x:string=""
   counter:number=0
   constructor(private router : Router) { 
     
       this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
       this.sub=  this.router.getCurrentNavigation()!.extras.state?.['head'] as string
-    //this.c=  this.router.getCurrentNavigation().extras.state.Mail
+      this.x= this.router.getCurrentNavigation()!.extras.state?.['importance'] as string
+
    
   }
 
+
+
   ngOnInit(): void { 
+    var pr= ((document.getElementById("priority") as HTMLInputElement));
+    pr.value=this.x
+
   }
+
   mail1(){
     console.log(this.attach)
     var  t= ((document.getElementById("Too") as HTMLInputElement).value);

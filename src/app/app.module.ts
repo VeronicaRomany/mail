@@ -20,7 +20,9 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewFolderComponent } from './new-folder/new-folder.component';
-import { TrashComponent } from './trash/trash.component'
+import { TrashComponent } from './trash/trash.component';
+import { LogOutComponent } from './log-out/log-out.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { TrashComponent } from './trash/trash.component'
     LoginComponent,
     RegisterComponent,
     NewFolderComponent,
-    TrashComponent
+    TrashComponent,
+    LogOutComponent,
+    DeleteAccountComponent
   ],
   imports: [
     BrowserModule,

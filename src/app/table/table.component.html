@@ -4,12 +4,14 @@
   <button  class="search-btn" style="margin:5px;">Search</button>
   <button class="clear-btn" >clear</button>
 
-  <select id="filter" name="filter" class="dropdown" (change)="filterBy()" >
+  <select id="filter" name="filter" class="dropdown" (change)="filterBy() " >
     <option value="" disabled selected>Filter By</option>
     <option value="sender">Sender</option>
     <option value="subject">Subject</option>
     <option value="priority">Priority</option>
   </select>
+
+  
 
   <input *ngIf="senderFlag" type="text" placeholder="Sender" class="input">
   <input *ngIf="subjectFlag" type="text" placeholder="Subject" class="input">
@@ -18,6 +20,17 @@
     <option value="High">High</option>
     <option value="Medieum">Medieum</option>
     <option value="low">Low</option>
+  </select>
+
+  <select id="sort" name="sort" class="dropdown1"  (change)="SortBy()">
+    <option value="" disabled selected>Sort By</option>
+    <option value="none">None</option>
+    <option value="date">Date</option>
+    <option value="sender">Sender</option>
+    <option value="subject">Subject</option>
+    <option value="priority">Importance</option>
+    <option value="body">Body</option>
+    <option value="attachment">Attachments</option>
   </select>
 </form>
 

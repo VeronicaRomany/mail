@@ -12,6 +12,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { NewFolderComponent } from './new-folder/new-folder.component';
 import { TrashComponent } from './trash/trash.component';
 
+
 const routes: Routes = [
   { path: 'NewMail', component: NewMailComponent },
   { path: 'table', component: TableComponent },
