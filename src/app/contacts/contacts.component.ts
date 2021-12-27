@@ -75,8 +75,6 @@ export class ContactsComponent implements OnInit{
        this.selected.push(this.Contacts[index])
        console.log(this.selected)
    }else{
-    
-    
     const index = this.Contacts.findIndex(item => item.name === ID);
     this.selected.pop(this.Contacts[index])
     console.log(this.selected)
@@ -88,9 +86,11 @@ export class ContactsComponent implements OnInit{
 
   ngOnInit(): void { 
   }
+
   SortBy(){
     this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
     console.log(this.sortSelector)
+    //request sort
   }
 
 msg(mail:string){
@@ -101,7 +101,6 @@ startEdit(id:string){
   this.EDIT=true;
   const index = this.Contacts.findIndex(item => item.id === id);
   this.INDEX=index;
-  
 }
 
 confirmEdit(){
@@ -122,8 +121,6 @@ closeForm() {
 }
 
 newContact(){
-
-
   con.name= ((document.getElementById("Name") as HTMLInputElement).value);
   con.mail1= ((document.getElementById("Mail") as HTMLInputElement).value);
   if(this.anotherMail){
