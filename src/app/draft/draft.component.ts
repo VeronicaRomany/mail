@@ -19,10 +19,10 @@ export class DraftComponent implements OnInit {
   ngOnInit(): void {
   }
     emails = [
-      {name:"mark@oop.com", subject:"OOP", id:"1", mail:"Hello mark"},
-      {name:"vero@oop.com", subject:"Numerical", id:"2" , mail:"Hello vero"},
-      {name:"tony@oop.com", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-      {name:"mariam@oop.com", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
+      {name:"mark@oop.com", subject:"OOP", id:"1", mail:"Hello mark" ,priority:"High"},
+      {name:"vero@oop.com", subject:"Numerical", id:"2" , mail:"Hello vero",priority:"Medium"},
+      {name:"tony@oop.com", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx",priority:"Low"},
+      {name:"mariam@oop.com", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555",priority:"Low"}
     ]
 
     selected:any=[]
@@ -70,9 +70,9 @@ export class DraftComponent implements OnInit {
    
 
   }
-  goto(to:string , subject:string ,mail:string){
+  goto(pr:string,to:string , subject:string ,mail:string){
    // this.router.navigate(['/NewMail'], { fragment:mail });
-   this.router.navigate(['/NewMail'], { state: {reciever:to,head:subject, Mail: mail }})
+   this.router.navigate(['/NewMail'], { state: {importance:pr,reciever:to,head:subject, Mail: mail }})
   }
   
   add(){

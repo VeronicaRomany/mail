@@ -20,12 +20,16 @@ export class ContactsComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   anotherMail:any
-   
+  sortSelector:string=""
   Contacts = [
     {name:"Mark", Accounts: ["mark@oop.com","Markoo@oop.com"]},
     {name:"Tony", Accounts: ["t@oop.com"]}
   ]
   ngOnInit(): void { 
+  }
+  SortBy(){
+    this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
+    console.log(this.sortSelector)
   }
 
 msg(mail:string){

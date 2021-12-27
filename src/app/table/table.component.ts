@@ -13,15 +13,22 @@ export class TableComponent implements OnInit {
  messageviewmail:String=""
  lastId:string=""
  
-  senderFlag:boolean=false;
-  subjectFlag:boolean=false;
-  priorityFlag:boolean=false;
+ senderFlag:boolean=false;
+ subjectFlag:boolean=false;
+ priorityFlag:boolean=false;
+
+ sortSelector:string="";
   constructor() { 
     
   }
   
  
   ngOnInit(): void {
+  }
+
+  SortBy(){
+    this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
+    console.log(this.sortSelector)
   }
 
   filterBy(){
