@@ -22,7 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewFolderComponent } from './new-folder/new-folder.component';
 import { TrashComponent } from './trash/trash.component';
 import { LogOutComponent } from './log-out/log-out.component';
-import { DeleteAccountComponent } from './delete-account/delete-account.component'
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { SentComponent } from './sent/sent.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { DeleteAccountComponent } from './delete-account/delete-account.componen
     NewFolderComponent,
     TrashComponent,
     LogOutComponent,
-    DeleteAccountComponent
+    DeleteAccountComponent,
+    SentComponent
   ],
   imports: [
     BrowserModule,
