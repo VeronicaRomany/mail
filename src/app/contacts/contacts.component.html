@@ -2,30 +2,44 @@
 <div class="form-inline md-form mr-auto mb-4">
     <input class="search" type="text" style="margin:5px;" placeholder="Search" >
     <button  class="search-btn" style="margin-right: 10px;">Search</button>
+    <button class="clear-btn" >clear</button>
     <select id="sort" name="sort" class="dropdown1"  (change)="SortBy()">
       <option value="" disabled selected>Sort By</option>
       <option value="none">None</option>
       <option value="date">Contact</option>
     </select>
+  <!-- <button *ngIf="isSomethingSelected"  (click)="multipleMails()">Send to Selected</button> -->  
+    <select *ngIf="isSomethingSelected" id="selection" name="selection" class="dropdown1"  (change)="whichChangeTodo()">
+      <option value="" disabled selected>Selected</option>
+      <option value="send">Send Mails</option>
+      <option value="delete">Delete</option>
+      
+    </select>
+
     <button class="open-button" (click)="openForm() ">Add Contact</button>
+    
 
 </div>
 
-  
+<input *ngIf="EDIT"  type="text" class="edit" id="edit" placeholder="New Name" >
+<button *ngIf="EDIT" class="btn3" (click)="confirmEdit()" style="margin-left: 1%;">Confirm</button>
   
   <div style="display: flexbox;">
     
   <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
       <thead class="thead">
       <tr>
+          <th style="width: 50px">Select</th>
           <th style="width:130px">Name</th>
           <th style="width: 550px;">Mail</th>
-          
+          <th style="width: 130px;"></th>
           
           
       </tr>
          </thead>
+
       <tr *ngFor ="let item of Contacts" style="color: white; background-color: grey;" >
+            <td><input type="checkbox" (change)="toggleEditable($event,item.name)"></td>
             <td>{{item.name}}</td>
              <td>
               <div *ngFor ="let x of item.Accounts">
@@ -33,7 +47,10 @@
                 <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(x)" >send mail</a> 
             </div>
              </td>
+             <td><button  type="button" class="btn2" (click)="startEdit(item.id)" >Edit Contact</button></td>
           </tr>
+          
+         
   </table>
 
   <div class="form-popup" id="myForm">
