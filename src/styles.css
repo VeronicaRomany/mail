@@ -1,20 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
-.img{
-    background-image: url(/src/g.jpg);
-    background-size: cover;
-    height: 100%;
-}
-
 
 button:disabled{
     background: gray;
     color:white;
 }
-body{
-    background: #FFEFBA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
 
+body{
+    background-image: url(9.jpg);
+    background-size: cover ;
+}
