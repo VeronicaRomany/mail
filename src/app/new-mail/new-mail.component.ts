@@ -35,7 +35,7 @@ export class NewMailComponent implements OnInit {
   sub:string=""
   text:string=""
   x:string=""
-  counter:number=0
+ 
   constructor(private router : Router) { 
     
       this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
@@ -67,8 +67,8 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.id=this.counter
+    m.id=0
     console.log(m)
-    this.counter=this.counter+1
+   
    }
 }

@@ -16,7 +16,7 @@ export class FileUploadComponent  {
     
     loading: boolean = false; // Flag variable
     file: FileList = {} as FileList; // Variable to store file
-  
+  //file:string[]=[]
    
     // Inject service 
     constructor(private fileUploadService: FileUploadService) { }
@@ -27,7 +27,10 @@ export class FileUploadComponent  {
     // On file Select
     onChange(event:any){
         this.flag=true
-        this.file = event.target.files[0];
+       this.file = event.target.files[0];
+       //for(var i=0 ; i<event.target.files.length ;i++){
+       // this.file.push(event.target.files[i]);
+       //}
     }
   
     // OnClick of button Upload
