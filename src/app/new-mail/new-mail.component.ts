@@ -25,8 +25,6 @@ export class NewMailComponent implements OnInit {
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
       this.sub=  this.router.getCurrentNavigation()!.extras.state?.['head'] as string
       this.x= this.router.getCurrentNavigation()!.extras.state?.['importance'] as string
-
-   
   }
 
 

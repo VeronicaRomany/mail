@@ -12,21 +12,40 @@ export class SentComponent implements OnInit {
   messageviewsubject:String=""
   messageviewmail:String=""
   lastId:number=0
+
+
+  isSomethingSelected:boolean=false;
+  selected:any=[]
+
+  deleteSelected(){
+    // send array selected f request
+    this.emails=[]
+    this.getsent()
+   }
+  
+   toggleEditable(event: any,ID:number) {
+    console.log(ID)
+      if ( event.target.checked ) {
+         this.isSomethingSelected=true;
+         const index = this.emails.findIndex(item => item.id === ID);
+         this.selected.push(this.emails[index])
+         console.log(this.selected)
+     }else{
+      const index = this.emails.findIndex(item => item.id === ID);
+      this.selected.pop(this.emails[index])
+      console.log(this.selected)
+      if(this.selected.length==0){
+        this.isSomethingSelected=false;
+      }
+     }
+  }
    constructor( private http : HttpClient) { 
     this.getsent()
    }
    
    ngOnInit(): void {
    }
-   /*
-     emails = [
-       {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
-       {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
-       {name:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-       {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
-     ]
- */
-     selected:any=[]
+   
  
    view(x:any){
      this.lastId=x
@@ -58,13 +77,7 @@ export class SentComponent implements OnInit {
      }
    }
  
-   toggleEditable(event: any,ID:number) {
-     if ( event.target.checked ) {
-        const index = this.emails.findIndex(item => item.id === ID);
-        this.selected.push(this.emails[index])
-        console.log(this.selected)
-    }
- }
+   
  
    delete(ID:any){
     

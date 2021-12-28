@@ -1,5 +1,7 @@
+import { isNull, nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit ,Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { empty } from 'rxjs';
 import { FileUploadService } from './file-upload.service';
   
 @Component({
@@ -17,7 +19,8 @@ export class FileUploadComponent  {
     loading: boolean = false; // Flag variable
     file: FileList = {} as FileList; // Variable to store file
   //file:string[]=[]
-   
+    attachments:string[]=[]
+    
     // Inject service 
     constructor(private fileUploadService: FileUploadService) { }
   
@@ -32,6 +35,15 @@ export class FileUploadComponent  {
        //for(var i=0 ; i<event.target.files.length ;i++){
        // this.file.push(event.target.files[i]);
        //}
+    } 
+    deleteAttach(event:any){
+        this.attachments=[]
+        this.shortLink = ""; 
+        this.flag=false;
+       
+        
+        
+
     }
   
     // OnClick of button Upload
@@ -44,7 +56,9 @@ export class FileUploadComponent  {
   
                     // Short link via api response
                     this.shortLink = event.link;
-                    this.link.emit(event.link)
+                    this.link.emit(event.link) 
+                    this.attachments.push(event.link)
+                    console.log(this.attachments)
                     this.loading = false; // Flag variable 
                   
                 }

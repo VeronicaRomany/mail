@@ -24,7 +24,8 @@
     <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"style="margin-left: 10px ;">{{text}}</textarea>
     <br> 
    
-    <app-file-upload (link)="attach=$event"></app-file-upload>
+    <app-file-upload (link)="attach=$event" style="color: white;"></app-file-upload>
+   
  
     <button (click)="mail1()">Send</button>
     <button (click)="draft()">Save as Draft</button>

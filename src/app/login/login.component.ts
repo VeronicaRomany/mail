@@ -17,15 +17,21 @@ login:any = FormGroup;
       email:['',Validators.required]
     })
   }
+
   loginSubmit(data:any){
+    let idntifier=""
     const body = ((document.getElementById("mail") as HTMLInputElement).value);
     this.http.post('http://localhost:8080/server/user/login',body,{responseType:'text'}).subscribe(response =>{
       console.log(response)
+       idntifier=response
+       console.log(idntifier)
+       this.router.navigate(['table'],{  fragment: idntifier});   
   });
      
-       this.router.navigate(['table']);
-     
+       
   }
+
+
   gotToSignup(){
     this.router.navigate(['register']);
   }

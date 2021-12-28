@@ -43,4 +43,5 @@ export class NavigationBarComponent implements OnInit {
       console.log(data.body)
     })
   }
+  
 }
