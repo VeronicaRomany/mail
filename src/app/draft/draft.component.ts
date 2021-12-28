@@ -1,72 +1,89 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,  NavigationExtras, Router } from '@angular/router';
+import { NewMail } from '../table/table.component';
 @Component({
   selector: 'app-draft',
   templateUrl: './draft.component.html',
   styleUrls: ['./draft.component.css']
 })
 export class DraftComponent implements OnInit {
-
+  drafts: NewMail[]=[];
   messageviewname:String=""
  messageviewsubject:String=""
  messageviewmail:String=""
- lastId:string=""
-  http: any;
+ lastId:number | undefined
+
   output: any;
   expression: any;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient) {
+     this.getdraft()
+   }
   
   ngOnInit(): void {
   }
-    emails = [
-      {name:"mark@oop.com", subject:"OOP", id:"1", mail:"Hello mark" ,priority:"High"},
-      {name:"vero@oop.com", subject:"Numerical", id:"2" , mail:"Hello vero",priority:"Medium"},
-      {name:"tony@oop.com", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx",priority:"Low"},
-      {name:"mariam@oop.com", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555",priority:"Low"}
-    ]
+  getdraft(){
+    console.log("sasasas")
+    this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
+    params:{
+      userName:"mark@oop",
+      folder:"draft"
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.drafts.push(jsonArr[i])
+     }
+    })
+  }
 
     selected:any=[]
 
   view(ID:any){
     this.lastId=ID
-    const index = this.emails.findIndex(item => item.id === ID);
-    this.messageviewname="From : \t"+this.emails[index].name;
-    this.messageviewsubject="Subject : \t"+this.emails[index].subject;
-    this.messageviewmail=this.emails[index].mail;
+    const index = this.drafts.findIndex(item => item.ID === ID);
+    this.messageviewname="From : \t"+this.drafts[index].fromEmail;
+    this.messageviewsubject="Subject : \t"+this.drafts[index].subject;
+    this.messageviewmail=this.drafts[index].body;
   }
   msg(name:string){
     console.log(name)
   }
   viewNext(ID:any){
-    const index = this.emails.findIndex(item => item.id === ID);
-    if(index!=this.emails.length-1){
-      this.messageviewname="From: \t"+this.emails[index+1].name;
-      this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
-      this.messageviewmail=this.emails[index+1].mail;
-      this.lastId=this.emails[index+1].id
+    const index = this.drafts.findIndex(item => item.ID === ID);
+    if(index!=this.drafts.length-1){
+      this.messageviewname="From: \t"+this.drafts[index+1].fromEmail;
+      this.messageviewsubject="Subject: \t"+this.drafts[index+1].subject;
+      this.messageviewmail=this.drafts[index+1].body;
+      this.lastId=this.drafts[index+1].ID
     }
   }
   viewPrev(ID:any){
-    const index = this.emails.findIndex(item => item.id === ID);
+    const index = this.drafts.findIndex(item => item.ID === ID);
     if(index!=0){
-      this.messageviewname="From: \t"+this.emails[index-1].name;
-      this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
-      this.messageviewmail=this.emails[index-1].mail;
-      this.lastId=this.emails[index-1].id
+      this.messageviewname="From: \t"+this.drafts[index-1].fromEmail;
+      this.messageviewsubject="Subject: \t"+this.drafts[index-1].subject;
+      this.messageviewmail=this.drafts[index-1].body;
+      this.lastId=this.drafts[index-1].ID
     }
   }
 
-  toggleEditable(event: any,ID:string) {
+  toggleEditable(event: any,ID:number) {
     if ( event.target.checked ) {
-       const index = this.emails.findIndex(item => item.id === ID);
-       this.selected.push(this.emails[index])
+       const index = this.drafts.findIndex(item => item.ID === ID);
+       this.selected.push(this.drafts[index])
        console.log(this.selected)
    }
 }
 
   delete(ID:any){
    
-    this.emails = []
+    this.drafts = []
    
 
   }
