@@ -23,13 +23,13 @@
 
 
     <tr *ngFor ="let item of drafts" style="color: white; background-color: grey;">
-        <td><input type="checkbox" (change)="toggleEditable($event,item.ID)"></td>
+        <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
         <td>{{changePr(item.priority)}}</td>
         <td>{{item.fromEmail}}</td>
         <td>{{item.subject}}</td>
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
-            <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.ID)" >View</button>
-            <button  type="button" class="btn2" (click)="delete(item.ID)" >Delete</button>
+            <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
+            <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
             <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body)" >Edit</button>
     </tr>
   

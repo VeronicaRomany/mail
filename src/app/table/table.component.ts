@@ -11,7 +11,7 @@ export class NewMail {
     this.body=""
     this.attachement=""
     this.priority=0;
-    this.ID=0;
+    this.id=0;
   }
   fromEmail: string;
   toEmail :string;
@@ -20,7 +20,7 @@ export class NewMail {
   attachement:string;
   priority:any;
   date:any;
-  ID:number;
+  id:number;
 }
 
 export class filter{
@@ -146,6 +146,7 @@ export class TableComponent implements OnInit {
      console.log(jsonArr)
      for(var i in jsonArr){
        this.emails.push(jsonArr[i])
+      console.log(this.emails)
      }
     })
   }
@@ -194,9 +195,11 @@ export class TableComponent implements OnInit {
 */
     selected:any=[]
 
-  view(ID:any){
+  view(ID:number){
     this.lastId=ID
-    const index = this.emails.findIndex(item => item.ID === ID);
+    console.log(ID)
+    const index = this.emails.findIndex(item => item.id === ID);
+    console.log(index)
     this.messageviewsender="From : \t"+this.emails[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
     this.messageviewmail=this.emails[index].body;
@@ -205,21 +208,21 @@ export class TableComponent implements OnInit {
     console.log(sender)
   }
   viewNext(ID:any){
-    const index = this.emails.findIndex(item => item.ID=== ID);
+    const index = this.emails.findIndex(item => item.id=== ID);
     if(index!=this.emails.length-1){
       this.messageviewsender="From: \t"+this.emails[index+1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
       this.messageviewmail=this.emails[index+1].body;
-      this.lastId=this.emails[index+1].ID
+      this.lastId=this.emails[index+1].id
     }
   }
   viewPrev(ID:any){
-    const index = this.emails.findIndex(item => item.ID === ID);
+    const index = this.emails.findIndex(item => item.id === ID);
     if(index!=0){
       this.messageviewsender="From: \t"+this.emails[index-1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
       this.messageviewmail=this.emails[index-1].body;
-      this.lastId=this.emails[index-1].ID
+      this.lastId=this.emails[index-1].id
     }
   }
 
@@ -237,15 +240,16 @@ export class TableComponent implements OnInit {
   }
 
   toggleEditable(event: any,ID:number) {
+    console.log(ID)
     if ( event.target.checked ) {
        this.isSomethingSelected=true;
-       const index = this.emails.findIndex(item => item.ID === ID);
+       const index = this.emails.findIndex(item => item.id === ID);
        this.selected.push(this.emails[index])
        console.log(this.selected)
    }else{
     
     
-    const index = this.emails.findIndex(item => item.ID === ID);
+    const index = this.emails.findIndex(item => item.id === ID);
     this.selected.pop(this.emails[index])
     console.log(this.selected)
     if(this.selected.length==0){
@@ -271,9 +275,10 @@ export class TableComponent implements OnInit {
     
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
-     console.log(jsonArr)
+     
      for(var i in jsonArr){
        this.emails.push(jsonArr[i])
+       console.log(this.emails)
      }
     })
   }

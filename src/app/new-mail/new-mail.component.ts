@@ -49,7 +49,7 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.ID=0
+    m.id=0
     m.fromEmail="mark@oop"
     console.log(m)
     var jsonString = JSON.stringify(m);
@@ -73,7 +73,7 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.ID=0
+    m.id=0
     console.log(m)
    }
 }
