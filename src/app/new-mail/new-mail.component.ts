@@ -71,4 +71,21 @@ export class NewMailComponent implements OnInit {
     console.log(m)
    
    }
+
+   draft(){
+    console.log(this.attach)
+    var  t= ((document.getElementById("Too") as HTMLInputElement).value);
+    var  s= ((document.getElementById("Subj") as HTMLInputElement).value);
+    var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
+    var pr= ((document.getElementById("priority") as HTMLInputElement).value);
+    
+    m.priority=pr
+    m.reciever=t
+    m.subject=s
+    m.body=txt
+    m.attachement=this.attach
+    m.date=new Date()
+    m.id=0
+    console.log(m)
+   }
 }

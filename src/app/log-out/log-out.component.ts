@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogOutComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    // request log out
+  }
 
   ngOnInit(): void {
   }

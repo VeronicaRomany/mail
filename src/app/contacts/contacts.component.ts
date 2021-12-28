@@ -90,6 +90,7 @@ export class ContactsComponent implements OnInit{
   SortBy(){
     this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
     console.log(this.sortSelector)
+    this.Contacts=[]
     //request sort
   }
 
@@ -141,5 +142,16 @@ NewInput(){
 
 toggle(){
   this.anotherMail=!this.anotherMail
+}
+
+searchabout(){
+  let wordToSearch=((document.getElementById("search") as HTMLInputElement).value);
+  console.log(wordToSearch)
+  this.Contacts=[]
+  //request search
+}
+
+endsearch(){
+  //request get contact
 }
 }

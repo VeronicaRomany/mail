@@ -1,9 +1,9 @@
 <!--<app-navigation-bar></app-navigation-bar>-->
 <div class="form-inline md-form mr-auto mb-4">
-    <input class="search" type="text" style="margin:5px;" placeholder="Search" >
-    <button  class="search-btn" style="margin-right: 10px;">Search</button>
-    <button class="clear-btn" >clear</button>
-    <select id="sort" name="sort" class="dropdown1"  (change)="SortBy()">
+    <input class="search" type="text" style="margin:5px;" placeholder="Search" id="search">
+    <button  class="search-btn" style="margin-right: 10px;" (click)="searchabout()">Search</button>
+    <button class="clear-btn" (click)="endsearch()" >clear</button>
+    <select id="sort" name="sort" class="dropdown1" (change)="SortBy()">
       <option value="" disabled selected>Sort By</option>
       <option value="none">None</option>
       <option value="date">Contact</option>
@@ -68,7 +68,3 @@
       <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
     </div>
   </div>
-  
-  
-  
-  

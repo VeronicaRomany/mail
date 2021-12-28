@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // request delete ll account by id
+   }
 
   ngOnInit(): void {
   }
