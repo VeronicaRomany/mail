@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 
 
 
@@ -18,6 +19,7 @@ export class TableComponent implements OnInit {
  priorityFlag:boolean=false;
  isSomethingSelected:boolean=false;
  sortSelector:string="";
+
   constructor() { 
   }
   

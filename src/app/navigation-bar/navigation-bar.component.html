@@ -5,8 +5,8 @@
       <textarea id="in">{{f}}</textarea>
       <button (click)="addFolder()">+</button>
     </li>
-      <li><a routerLink="/Contacts" routerLinkActive="active">Contacts</a></li>
-      <li><a routerLink="/table" routerLinkActive="active">Inbox</a></li>
+      <li><a routerLink="/Contacts" routerLinkActive="active" >Contacts</a></li>
+      <li><a routerLink="/table" routerLinkActive="active" (click)="getinbox()">Inbox</a></li>
       <li><a routerLink="/trash" routerLinkActive="active">Trash</a></li>
       <li><a routerLink="/sent" routerLinkActive="active">Sent</a></li>
       <li><a routerLink="/Draft" routerLinkActive="active">Draft</a></li>
