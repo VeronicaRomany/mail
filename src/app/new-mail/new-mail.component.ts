@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NewMail} from'../table/table.component'
 let  mails: NewMail[]=[];
-
 const m = new NewMail()
 @Component({
   selector: 'app-new-mail',
@@ -50,7 +49,7 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.ID=0
+    m.id=0
     m.fromEmail="mark@oop"
     console.log(m)
     var jsonString = JSON.stringify(m);
@@ -74,7 +73,7 @@ export class NewMailComponent implements OnInit {
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.ID=0
+    m.id=0
     console.log(m)
    }
 }

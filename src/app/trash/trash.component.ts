@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NewMail } from '../table/table.component';
 
 @Component({
   selector: 'app-trash',
@@ -6,61 +8,76 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trash.component.css']
 })
 export class TrashComponent implements OnInit {
+  trash: NewMail[]=[];
   messageviewname:String=""
   messageviewsubject:String=""
   messageviewmail:String=""
-  lastId:string=""
+  lastId:number | undefined
   multiMails:string=""
   select :boolean=false;
-   constructor() {
- 
+   constructor(private http : HttpClient) {
+      this.getTrash();
     }
    
    ngOnInit(): void {
    }
-     emails = [
-       {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
-       {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
-       {name:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-       {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
-     ]
+   getTrash(){
+    console.log("sasasas")
+    this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
+    params:{
+      userName:"mark@oop",
+      folder:"trash"
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.trash.push(jsonArr[i])
+     }
+    })
+  }
+    
  
      selected:any=[]
      
    view(ID:any){
      this.lastId=ID
-     const index = this.emails.findIndex(item => item.id === ID);
-     this.messageviewname="From : \t"+this.emails[index].name;
-     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
-     this.messageviewmail=this.emails[index].mail;
+     const index = this.trash.findIndex(item => item.id === ID);
+     this.messageviewname="From : \t"+this.trash[index].fromEmail;
+     this.messageviewsubject="Subject : \t"+this.trash[index].subject;
+     this.messageviewmail=this.trash[index].body;
    }
    msg(name:string){
      console.log(name)
    }
    viewNext(ID:any){
-     const index = this.emails.findIndex(item => item.id === ID);
-     if(index!=this.emails.length-1){
-       this.messageviewname="From: \t"+this.emails[index+1].name;
-       this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
-       this.messageviewmail=this.emails[index+1].mail;
-       this.lastId=this.emails[index+1].id
+     const index = this.trash.findIndex(item => item.id === ID);
+     if(index!=this.trash.length-1){
+       this.messageviewname="From: \t"+this.trash[index+1].fromEmail;
+       this.messageviewsubject="Subject: \t"+this.trash[index+1].subject;
+       this.messageviewmail=this.trash[index+1].body;
+       this.lastId=this.trash[index+1].id
      }
    }
    viewPrev(ID:any){
-     const index = this.emails.findIndex(item => item.id === ID);
+     const index = this.trash.findIndex(item => item.id === ID);
      if(index!=0){
-       this.messageviewname="From: \t"+this.emails[index-1].name;
-       this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
-       this.messageviewmail=this.emails[index-1].mail;
-       this.lastId=this.emails[index-1].id
+       this.messageviewname="From: \t"+this.trash[index-1].fromEmail;
+       this.messageviewsubject="Subject: \t"+this.trash[index-1].subject;
+       this.messageviewmail=this.trash[index-1].body;
+       this.lastId=this.trash[index-1].id
      }
    }
  
-   toggleEditable(event: any,ID:string) {
+   toggleEditable(event: any,ID:number) {
      if ( event.target.checked ) {
         this.select=true;
-        const index = this.emails.findIndex(item => item.id === ID);
-        this.selected.push(this.emails[index])
+        const index = this.trash.findIndex(item => item.id === ID);
+        this.selected.push(this.trash[index])
         console.log(this.selected)
     }
  }
@@ -81,7 +98,7 @@ export class TrashComponent implements OnInit {
 
    delete(ID:any){
     
-     this.emails = []
+     this.trash = []
     
  
    }
