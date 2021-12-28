@@ -13,8 +13,8 @@ export class DraftComponent implements OnInit {
  messageviewsubject:String=""
  messageviewmail:String=""
  lastId:number | undefined
-  output: any;
-  expression: any;
+
+
   constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient) {
      this.getdraft()
    }
@@ -64,7 +64,7 @@ export class DraftComponent implements OnInit {
 
   view(ID:any){
     this.lastId=ID
-    const index = this.drafts.findIndex(item => item.ID === ID);
+    const index = this.drafts.findIndex(item => item.id === ID);
     this.messageviewname="From : \t"+this.drafts[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.drafts[index].subject;
     this.messageviewmail=this.drafts[index].body;
@@ -73,27 +73,27 @@ export class DraftComponent implements OnInit {
     console.log(name)
   }
   viewNext(ID:any){
-    const index = this.drafts.findIndex(item => item.ID === ID);
+    const index = this.drafts.findIndex(item => item.id === ID);
     if(index!=this.drafts.length-1){
       this.messageviewname="From: \t"+this.drafts[index+1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.drafts[index+1].subject;
       this.messageviewmail=this.drafts[index+1].body;
-      this.lastId=this.drafts[index+1].ID
-    }
+      this.lastId=this.drafts[index+1].id
+        }
   }
   viewPrev(ID:any){
-    const index = this.drafts.findIndex(item => item.ID === ID);
+    const index = this.drafts.findIndex(item => item.id === ID);
     if(index!=0){
       this.messageviewname="From: \t"+this.drafts[index-1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.drafts[index-1].subject;
       this.messageviewmail=this.drafts[index-1].body;
-      this.lastId=this.drafts[index-1].ID
+      this.lastId=this.drafts[index-1].id
     }
   }
 
   toggleEditable(event: any,ID:number) {
     if ( event.target.checked ) {
-       const index = this.drafts.findIndex(item => item.ID === ID);
+       const index = this.drafts.findIndex(item => item.id === ID);
        this.selected.push(this.drafts[index])
        console.log(this.selected)
    }
