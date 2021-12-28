@@ -49,6 +49,7 @@ export class ContactsComponent implements OnInit{
         this.deleteThisIDs.push(this.selected[i].id)
      }
      console.log(this.deleteThisIDs)
+     this.Contacts=[]
      // hna hn3ml delete request ll contacts then hn3ml request y get al contacts
      this.isSomethingSelected=false;
   }
@@ -152,6 +153,7 @@ searchabout(){
 }
 
 endsearch(){
+  ((document.getElementById("search") as HTMLInputElement).value)=""
   //request get contact
 }
 }
