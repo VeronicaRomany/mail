@@ -1,26 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {NewMail} from'../table/table.component'
 let  mails: NewMail[]=[];
-export class NewMail {
-  constructor() { 
-    this.sender=""
-    this.reciever=""
-    this.subject=""
-    this.body=""
-    this.attachement=""
-    this.priority=0;
-    this.id=0;
-  }
-  sender: string;
-  reciever :string;
-  subject:string;
-  body:string; 
-  attachement:string;
-  priority:any;
-  date:any;
-  id:number;
-}
+
 const m = new NewMail()
 @Component({
   selector: 'app-new-mail',
@@ -36,7 +19,7 @@ export class NewMailComponent implements OnInit {
   text:string=""
   x:string=""
  
-  constructor(private router : Router) { 
+  constructor(private router : Router , private http:HttpClient) { 
     
       this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
@@ -62,14 +45,20 @@ export class NewMailComponent implements OnInit {
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
     m.priority=pr
-    m.reciever=t
+    m.toEmail=t
     m.subject=s
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.id=0
+    m.ID=0
+    m.fromEmail="mark@oop"
     console.log(m)
-   
+    var jsonString = JSON.stringify(m);
+    this.http.post("http://localhost:8080/server/mail/send",jsonString,{responseType:'text'}).subscribe((data:any) =>{
+      console.log(data)
+    
+  
+    })
    }
 
    draft(){
@@ -80,12 +69,12 @@ export class NewMailComponent implements OnInit {
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
     m.priority=pr
-    m.reciever=t
+    m.toEmail=t
     m.subject=s
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.id=0
+    m.ID=0
     console.log(m)
    }
 }
