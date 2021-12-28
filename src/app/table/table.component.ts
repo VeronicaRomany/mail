@@ -291,7 +291,7 @@ export class TableComponent implements OnInit {
     
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
-     
+     this.emails=[]
      for(var i in jsonArr){
        this.emails.push(jsonArr[i])
        console.log(this.emails)
@@ -299,5 +299,27 @@ export class TableComponent implements OnInit {
     })
   }
   
+ Search(){
+ 
+  this.http.get("http://localhost:8080/server/mail/search",{responseType:'text',
+  params:{
+    userID:this.userID,
+    folder:"inbox",
+    searchWord: "sad"
+  },observe:'response'
 
+  }).subscribe((data:any) =>{
+    console.log(data.body)
+  
+   var jsonstr:string=data.body;
+   let jsonArr=JSON.parse(jsonstr)
+   this.emails=[]
+   for(var i in jsonArr){
+
+     this.emails.push(jsonArr[i])
+     console.log(this.emails)
+   }
+  })
+  
+ }
 }

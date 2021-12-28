@@ -100,10 +100,12 @@ export class SentComponent implements OnInit {
     
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
+     this.emails=[]
      console.log(jsonArr)
      for(var i in jsonArr){
        this.emails.push(jsonArr[i])
      }
+     console.log(this.emails)
     })
   }
  

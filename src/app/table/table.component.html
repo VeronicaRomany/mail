@@ -1,7 +1,7 @@
 <app-navigation-bar></app-navigation-bar>
 <form class="form-inline md-form mr-auto mb-4">
   <input class="search" type="text" style="margin:5px;" placeholder="Search" >
-  <button  class="search-btn" style="margin:5px;">Search</button>
+  <button  class="search-btn" style="margin:5px;" (click)="Search()">Search</button>
   <button class="clear-btn" >clear</button>
   <select id="sort" name="sort" class="dropdown1"  (change)="SortBy()">
     <option value="" disabled selected>Sort By</option>
