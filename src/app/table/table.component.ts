@@ -1,18 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
+import {HttpClient} from '@angular/common/http'
 
 
-
+export class NewMail {
+  constructor() { 
+    this.sender=""
+    this.reciever=""
+    this.subject=""
+    this.body=""
+    this.attachement=""
+    this.priority=0;
+    this.id=0;
+  }
+  sender: string;
+  reciever :string;
+  subject:string;
+  body:string; 
+  attachement:string;
+  priority:any;
+  date:any;
+  id:number;
+}
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
- messageviewname:String=""
+   emails: NewMail[]=[];
+ messageviewsender:String=""
  messageviewsubject:String=""
  messageviewmail:String=""
- lastId:string=""
+ lastId:number | undefined
  multiMails:string=""
  senderFlag:boolean=false;
  subjectFlag:boolean=false;
@@ -20,7 +40,8 @@ export class TableComponent implements OnInit {
  isSomethingSelected:boolean=false;
  sortSelector:string="";
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
+    this.getinbox()
   }
   
  
@@ -47,40 +68,41 @@ export class TableComponent implements OnInit {
         this.priorityFlag=true;
      }
   }
-    emails = [
-      {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
-      {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
-      {name:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-      {name:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
+  /*
+    this.emails = [
+      {sender:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
+      {sender:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
+      {sender:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
+      {sender:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
     ]
-
+*/
     selected:any=[]
 
   view(ID:any){
     this.lastId=ID
     const index = this.emails.findIndex(item => item.id === ID);
-    this.messageviewname="From : \t"+this.emails[index].name;
+    this.messageviewsender="From : \t"+this.emails[index].sender;
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
-    this.messageviewmail=this.emails[index].mail;
+    this.messageviewmail=this.emails[index].body;
   }
-  msg(name:string){
-    console.log(name)
+  msg(sender:string){
+    console.log(sender)
   }
   viewNext(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=this.emails.length-1){
-      this.messageviewname="From: \t"+this.emails[index+1].name;
+      this.messageviewsender="From: \t"+this.emails[index+1].sender;
       this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
-      this.messageviewmail=this.emails[index+1].mail;
+      this.messageviewmail=this.emails[index+1].body;
       this.lastId=this.emails[index+1].id
     }
   }
   viewPrev(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=0){
-      this.messageviewname="From: \t"+this.emails[index-1].name;
+      this.messageviewsender="From: \t"+this.emails[index-1].sender;
       this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
-      this.messageviewmail=this.emails[index-1].mail;
+      this.messageviewmail=this.emails[index-1].body;
       this.lastId=this.emails[index-1].id
     }
   }
@@ -98,7 +120,7 @@ export class TableComponent implements OnInit {
     this.isSomethingSelected=false;
   }
 
-  toggleEditable(event: any,ID:string) {
+  toggleEditable(event: any,ID:number) {
     if ( event.target.checked ) {
        this.isSomethingSelected=true;
        const index = this.emails.findIndex(item => item.id === ID);
@@ -121,6 +143,22 @@ export class TableComponent implements OnInit {
     this.emails = []
    
 
+  }
+
+  getinbox(){
+    console.log("sasasas")
+    this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
+    params:{
+      usersender:"mark@oop",
+      folder:"inbox"
+    },observe:'response'
+
+    }).subscribe(data =>{
+      this.emails=[{sender:"mark", subject:"OOP", id:1, body:"Hello mark",reciever:"",attachement:"",priority:"",date:""},
+      {sender:"vero", subject:"Numerical", id:2 , body:"Hello vero",reciever:"",attachement:"",priority:"",date:""}
+     ]
+      console.log(data.body)
+    })
   }
   add(){
 
