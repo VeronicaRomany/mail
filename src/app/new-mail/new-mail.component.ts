@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NewMail} from'../table/table.component'
 let  mails: NewMail[]=[];
@@ -11,6 +11,7 @@ const m = new NewMail()
 })
 
 export class NewMailComponent implements OnInit {
+  
   public attach="";
  
   to:string=""
@@ -42,8 +43,17 @@ export class NewMailComponent implements OnInit {
     var  s= ((document.getElementById("Subj") as HTMLInputElement).value);
     var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
-    
-    m.priority=pr
+    var prio:number;
+    if(pr=="Urgent"){
+      prio=4
+    }else if(pr=="High"){
+      prio=3
+    }else if(pr=="Medieum"){
+      prio=2
+    }else{
+      prio=1
+    }
+    m.priority=prio
     m.toEmail=t
     m.subject=s
     m.body=txt
