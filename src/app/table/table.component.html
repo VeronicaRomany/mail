@@ -37,21 +37,8 @@
   </div>
   
 </form>
-<!--
-  <select id="filter" name="filter" class="dropdown"  (change)="filterBy() " >
-    <option value="" disabled selected>Filter By</option>
-    <option value="sender">Sender</option>
-    <option value="subject">Subject</option>
-    <option value="priority">Priority</option>
-  </select>
- -->
-  
 
-  
-
-
-
-
+ 
 <div style="display: flexbox;">
   
 <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
@@ -70,7 +57,7 @@
         <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
         <td>{{item.fromEmail}}</td>
         <td>{{item.subject}}</td>
-        <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
+        
             <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
             <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
         

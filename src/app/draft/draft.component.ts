@@ -14,6 +14,35 @@ export class DraftComponent implements OnInit {
  messageviewmail:String=""
  lastId:number | undefined
 
+ 
+ 
+ isSomethingSelected:boolean=false;
+ selected:any=[]
+
+
+ deleteSelected(){
+  // send array selected f request
+  this.drafts=[]
+  this.getdraft()
+ }
+
+ toggleEditable(event: any,ID:number) {
+  console.log(ID)
+    if ( event.target.checked ) {
+       this.isSomethingSelected=true;
+       const index = this.drafts.findIndex(item => item.id === ID);
+       this.selected.push(this.drafts[index])
+       console.log(this.selected)
+   }else{
+    const index = this.drafts.findIndex(item => item.id === ID);
+    this.selected.pop(this.drafts[index])
+    console.log(this.selected)
+    if(this.selected.length==0){
+      this.isSomethingSelected=false;
+    }
+   }
+}
+
 
   constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient) {
      this.getdraft()
@@ -60,7 +89,6 @@ export class DraftComponent implements OnInit {
 
   }
 
-    selected:any=[]
 
   view(ID:any){
     this.lastId=ID
@@ -91,13 +119,7 @@ export class DraftComponent implements OnInit {
     }
   }
 
-  toggleEditable(event: any,ID:number) {
-    if ( event.target.checked ) {
-       const index = this.drafts.findIndex(item => item.id === ID);
-       this.selected.push(this.drafts[index])
-       console.log(this.selected)
-   }
-}
+  
 
   delete(ID:any){
    

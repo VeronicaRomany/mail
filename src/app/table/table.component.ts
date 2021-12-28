@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 import {HttpClient} from '@angular/common/http'
+import { Router } from '@angular/router';
 
 
 export class NewMail {
@@ -44,6 +45,7 @@ export class filter{
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  userID:string=""
    emails: NewMail[]=[];
  messageviewsender:String=""
  messageviewsubject:String=""
@@ -56,16 +58,22 @@ export class TableComponent implements OnInit {
  confirmsenderFlag:boolean=false;
  confirmsubjectFlag:boolean=false;
  confirmpriorityFlag:boolean=false;
- isSomethingSelected:boolean=false;
  filter:boolean=false;
+
  sortSelector:string="";
 
-  constructor(private http:HttpClient) { 
+ selected:any=[]
+ isSomethingSelected:boolean=false;
+  constructor(private http:HttpClient,private router : Router) { 
+    console.log("const table")
+    this.userID= this.router.getCurrentNavigation()!.extras?.fragment as string
+    console.log(this.userID)
     this.getinbox()
   }
   
  
   ngOnInit(): void {
+    
   }
 
   SortBy(){
@@ -185,15 +193,8 @@ export class TableComponent implements OnInit {
     this.confirmpriorityFlag=false;
    }
   }
-  /*
-    this.emails = [
-      {sender:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
-      {sender:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},
-      {sender:"tony", subject:"Numerical", id:"3" , mail:"tony cocdos sadxx"},
-      {sender:"mariam", subject:"Numerical", id:"4" , mail:"Mariaaaaam hwfs1111111111111111111111111111111111 1111666666666666666666666666666666666666666666655555555555555555 555555555555555555555555555555555555555555555555"}
-    ]
-*/
-    selected:any=[]
+
+   
 
   view(ID:number){
     this.lastId=ID
@@ -259,14 +260,29 @@ export class TableComponent implements OnInit {
   }
 
   delete(ID:any){
-    this.emails = []
+
+    const options = {
+      body: {
+           id: this.userID,
+           messageID:ID,
+           collection:"inbox"
+      },
+   };
+   
+   this.http .delete('http://localhost:8080/server/mail/delete', options).subscribe((s:any) => {
+         console.log(s);
+      });
+
+    this.emails=[]
+    this.getinbox()
   }
 
   getinbox(){
+    
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
-      userName:"mark@oop",
+      userID:this.userID,
       folder:"inbox"
     },observe:'response'
 
