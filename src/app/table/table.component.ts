@@ -22,6 +22,22 @@ export class NewMail {
   date:any;
   ID:number;
 }
+
+export class filter{
+  constructor(){
+    this.Date=""
+    this.priority=0
+    this.receiver=""
+    this.sender=""
+    this.subject=""
+  }
+  subject:string;
+  sender:string;
+  receiver:string;
+  Date:string;
+  priority:number;
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -37,7 +53,11 @@ export class TableComponent implements OnInit {
  senderFlag:boolean=false;
  subjectFlag:boolean=false;
  priorityFlag:boolean=false;
+ confirmsenderFlag:boolean=false;
+ confirmsubjectFlag:boolean=false;
+ confirmpriorityFlag:boolean=false;
  isSomethingSelected:boolean=false;
+ filter:boolean=false;
  sortSelector:string="";
 
   constructor(private http:HttpClient) { 
@@ -54,19 +74,115 @@ export class TableComponent implements OnInit {
   }
 
   filterBy(){
+    this.filter=!this.filter;
+    if(this.filter){
+    this.senderFlag=true;
+    this.subjectFlag=true;
+    this.priorityFlag=true;
+    console.log("on")
+    }else{
+      this.stopFilter()
+      console.log("off")
+    }
+    
+  }
+  filterConfirmation(){
+    var sender;
+    var subject;
+    var pr;
+    var priority;
+    if(this.confirmsenderFlag){
+        sender= ((document.getElementById("senderFilter") as HTMLInputElement).value);
+      
+    }else{
+      sender =""
+    }
+    
+    if(this.confirmsubjectFlag){
+      subject= ((document.getElementById("subjectFilter") as HTMLInputElement).value);
+     
+    }else{
+      subject=""
+    }
+    
+    if(this.confirmpriorityFlag){
+        priority= ((document.getElementById("priority") as HTMLInputElement).value);
+      
+      if(priority=="Urgent"){
+        pr=4
+      }else if(priority=="High"){
+        pr=3
+      }else if(priority=="Medieum"){
+        pr=2
+      }else{
+        pr=1
+      }
+     
+     
+    }else{
+      pr=0
+    }
+   
+    let f = new filter()
+    f.subject=subject
+    f.sender=sender
+    f.priority=pr
+    console.log(f)
+
+    var x= JSON.stringify(f)
+    console.log(x)
+    this.http.get("http://localhost:8080/server/mail/filter",{responseType:'text',
+    params:{
+      userName:"mark@oop",
+      folder:"inbox",
+      filters: x
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+     }
+    })
+  }
+
+  stopFilter(){
+    this.confirmpriorityFlag=false;
+    this.confirmsenderFlag=false;
+    this.confirmsubjectFlag=false;
     this.senderFlag=false;
     this.subjectFlag=false;
     this.priorityFlag=false;
-    var pr= ((document.getElementById("filter") as HTMLInputElement).value);
-    if(pr=="sender"){
-      this.senderFlag=true;
+    this.filter=false;
+    this.emails=[]
+    this.getinbox()
+  }
+  joinFilterBySender(event: any){
+    if (event.target.checked) {
+      this.confirmsenderFlag=true;
+  }else{
+    this.confirmsenderFlag=false;
+  }
+}
+  joinFilterBySubject(event: any){
+    if (event.target.checked) {
+      this.confirmsubjectFlag=true
+    }else{
+      this.confirmsubjectFlag=false;
     }
-     if(pr=="subject"){
-      this.subjectFlag=true;
-    }
-     if(pr=="priority"){
-        this.priorityFlag=true;
-     }
+  }
+
+  joinFilterByPriority(event: any){
+    if (event.target.checked) {
+
+      this.confirmpriorityFlag=true
+   }else{
+    this.confirmpriorityFlag=false;
+   }
   }
   /*
     this.emails = [
@@ -139,10 +255,7 @@ export class TableComponent implements OnInit {
   }
 
   delete(ID:any){
-   
     this.emails = []
-   
-
   }
 
   getinbox(){

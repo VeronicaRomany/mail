@@ -4,22 +4,22 @@ import { Router } from '@angular/router';
 let  mails: NewMail[]=[];
 export class NewMail {
   constructor() { 
-    this.sender=""
-    this.reciever=""
+    this.fromEmail=""
+    this.toEmail=""
     this.subject=""
     this.body=""
     this.attachement=""
     this.priority=0;
-    this.id=0;
+    this.ID=0;
   }
-  sender: string;
-  reciever :string;
+  fromEmail: string;
+  toEmail :string;
   subject:string;
   body:string; 
   attachement:string;
   priority:any;
   date:any;
-  id:number;
+  ID:number;
 }
 const m = new NewMail()
 @Component({
@@ -62,12 +62,12 @@ export class NewMailComponent implements OnInit {
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
     m.priority=pr
-    m.reciever=t
+    m.toEmail=t
     m.subject=s
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.id=0
+    m.ID=0
     console.log(m)
    
    }
@@ -80,12 +80,12 @@ export class NewMailComponent implements OnInit {
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
     m.priority=pr
-    m.reciever=t
+    m.toEmail=t
     m.subject=s
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
-    m.id=0
+    m.ID=0
     console.log(m)
    }
 }
