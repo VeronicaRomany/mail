@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NewMail } from '../table/table.component';
-
+import { Globals } from 'src/globals';
 @Component({
   selector: 'app-trash',
   templateUrl: './trash.component.html',
@@ -15,7 +15,7 @@ export class TrashComponent implements OnInit {
   lastId:number | undefined
   multiMails:string=""
   select :boolean=false;
-   constructor(private http : HttpClient) {
+   constructor(private http : HttpClient,public globals: Globals) {
       this.getTrash();
     }
    
@@ -25,7 +25,7 @@ export class TrashComponent implements OnInit {
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
-      userName:"mark@oop",
+      userID:this.globals.userID,
       folder:"trash"
     },observe:'response'
 

@@ -15,9 +15,7 @@ import { DraftComponent } from './draft/draft.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card'
-import {MatButtonModule} from '@angular/material/button'
-import {MatInputModule} from '@angular/material/input'
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewFolderComponent } from './new-folder/new-folder.component';
 import { TrashComponent } from './trash/trash.component';

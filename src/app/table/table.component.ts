@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 import {HttpClient} from '@angular/common/http'
 import { Router } from '@angular/router';
-
+import { Globals } from 'src/globals';
 
 export class NewMail {
   constructor() { 
@@ -64,9 +64,9 @@ export class TableComponent implements OnInit {
 
  selected:any=[]
  isSomethingSelected:boolean=false;
-  constructor(private http:HttpClient,private router : Router) { 
+  constructor(private http:HttpClient,private router : Router,public globals: Globals) { 
     console.log("const table")
-    this.userID= this.router.getCurrentNavigation()!.extras?.fragment as string
+    this.userID= this.globals.userID
     console.log(this.userID)
     this.getinbox()
   }
