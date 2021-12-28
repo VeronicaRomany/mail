@@ -38,7 +38,8 @@ import { Globals } from 'src/globals';
     TrashComponent,
     LogOutComponent,
     DeleteAccountComponent,
-    SentComponent
+    SentComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,

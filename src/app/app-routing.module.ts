@@ -25,7 +25,8 @@ const routes: Routes = [
   {path:'navigation' , component: NavigationBarComponent},
   {path:'createFolder',component:NewFolderComponent},
   {path:'trash',component:TrashComponent},
-  {path:'sent',component:SentComponent}
+  {path:'sent',component:SentComponent},
+  { path: 'logOut',component: LoginComponent},
   ];
 
 @NgModule({
