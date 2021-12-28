@@ -16,7 +16,7 @@ export class NavigationBarComponent implements OnInit {
   constructor(private resolver :ComponentFactoryResolver ,private http:HttpClient) { 
     
   }
- 
+  
 
   ngOnInit(): void {
   }

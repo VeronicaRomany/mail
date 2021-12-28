@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NewMail} from'../table/table.component'
 import { Globals } from 'src/globals';
@@ -14,6 +14,7 @@ let fromMail:string=""
 })
 
 export class NewMailComponent implements OnInit {
+  
   public attach="";
  
   to:string=""
