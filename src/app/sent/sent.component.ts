@@ -44,6 +44,7 @@ export class SentComponent implements OnInit {
     this.getsent()
    }
    
+   
    ngOnInit(): void {
    }
    
