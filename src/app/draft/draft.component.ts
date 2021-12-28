@@ -13,7 +13,6 @@ export class DraftComponent implements OnInit {
  messageviewsubject:String=""
  messageviewmail:String=""
  lastId:number | undefined
-
   output: any;
   expression: any;
   constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient) {

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,12 +13,31 @@ export class TrashComponent implements OnInit {
   lastId:string=""
   multiMails:string=""
   select :boolean=false;
-   constructor() {
- 
+   constructor(private http : HttpClient) {
+      this.getTrash();
     }
    
    ngOnInit(): void {
    }
+   getTrash(){
+    console.log("sasasas")
+    this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
+    params:{
+      userName:"mark@oop",
+      folder:"draft"
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+     }
+    })
+  }
      emails = [
        {name:"mark", subject:"OOP", id:"1", mail:"Hello mark"},
        {name:"vero", subject:"Numerical", id:"2" , mail:"Hello vero"},

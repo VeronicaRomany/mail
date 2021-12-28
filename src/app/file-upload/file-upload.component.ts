@@ -28,6 +28,7 @@ export class FileUploadComponent  {
     onChange(event:any){
         this.flag=true
        this.file = event.target.files[0];
+    
        //for(var i=0 ; i<event.target.files.length ;i++){
        // this.file.push(event.target.files[i]);
        //}
@@ -45,6 +46,7 @@ export class FileUploadComponent  {
                     this.shortLink = event.link;
                     this.link.emit(event.link)
                     this.loading = false; // Flag variable 
+                  
                 }
             }
         );
