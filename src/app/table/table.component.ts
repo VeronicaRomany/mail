@@ -5,22 +5,22 @@ import {HttpClient} from '@angular/common/http'
 
 export class NewMail {
   constructor() { 
-    this.sender=""
-    this.reciever=""
+    this.fromEmail=""
+    this.toEmail=""
     this.subject=""
     this.body=""
     this.attachement=""
     this.priority=0;
-    this.id=0;
+    this.ID=0;
   }
-  sender: string;
-  reciever :string;
+  fromEmail: string;
+  toEmail :string;
   subject:string;
   body:string; 
   attachement:string;
   priority:any;
   date:any;
-  id:number;
+  ID:number;
 }
 @Component({
   selector: 'app-table',
@@ -80,8 +80,8 @@ export class TableComponent implements OnInit {
 
   view(ID:any){
     this.lastId=ID
-    const index = this.emails.findIndex(item => item.id === ID);
-    this.messageviewsender="From : \t"+this.emails[index].sender;
+    const index = this.emails.findIndex(item => item.ID === ID);
+    this.messageviewsender="From : \t"+this.emails[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
     this.messageviewmail=this.emails[index].body;
   }
@@ -89,21 +89,21 @@ export class TableComponent implements OnInit {
     console.log(sender)
   }
   viewNext(ID:any){
-    const index = this.emails.findIndex(item => item.id === ID);
+    const index = this.emails.findIndex(item => item.ID=== ID);
     if(index!=this.emails.length-1){
-      this.messageviewsender="From: \t"+this.emails[index+1].sender;
+      this.messageviewsender="From: \t"+this.emails[index+1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
       this.messageviewmail=this.emails[index+1].body;
-      this.lastId=this.emails[index+1].id
+      this.lastId=this.emails[index+1].ID
     }
   }
   viewPrev(ID:any){
-    const index = this.emails.findIndex(item => item.id === ID);
+    const index = this.emails.findIndex(item => item.ID === ID);
     if(index!=0){
-      this.messageviewsender="From: \t"+this.emails[index-1].sender;
+      this.messageviewsender="From: \t"+this.emails[index-1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
       this.messageviewmail=this.emails[index-1].body;
-      this.lastId=this.emails[index-1].id
+      this.lastId=this.emails[index-1].ID
     }
   }
 
@@ -123,13 +123,13 @@ export class TableComponent implements OnInit {
   toggleEditable(event: any,ID:number) {
     if ( event.target.checked ) {
        this.isSomethingSelected=true;
-       const index = this.emails.findIndex(item => item.id === ID);
+       const index = this.emails.findIndex(item => item.ID === ID);
        this.selected.push(this.emails[index])
        console.log(this.selected)
    }else{
     
     
-    const index = this.emails.findIndex(item => item.id === ID);
+    const index = this.emails.findIndex(item => item.ID === ID);
     this.selected.pop(this.emails[index])
     console.log(this.selected)
     if(this.selected.length==0){
@@ -149,15 +149,19 @@ export class TableComponent implements OnInit {
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
-      usersender:"mark@oop",
+      userName:"mark@oop",
       folder:"inbox"
     },observe:'response'
 
-    }).subscribe(data =>{
-      this.emails=[{sender:"mark", subject:"OOP", id:1, body:"Hello mark",reciever:"",attachement:"",priority:"",date:""},
-      {sender:"vero", subject:"Numerical", id:2 , body:"Hello vero",reciever:"",attachement:"",priority:"",date:""}
-     ]
+    }).subscribe((data:any) =>{
       console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+     }
     })
   }
   add(){
