@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,  NavigationExtras, Router } from '@angular/router';
 import { NewMail } from '../table/table.component';
+import { Globals } from 'src/globals';
 @Component({
   selector: 'app-draft',
   templateUrl: './draft.component.html',
@@ -44,7 +45,7 @@ export class DraftComponent implements OnInit {
 }
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient) {
+  constructor(private router: Router, private route: ActivatedRoute, private http : HttpClient,public globals: Globals) {
      this.getdraft()
    }
   
@@ -54,7 +55,7 @@ export class DraftComponent implements OnInit {
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
-      userName:"mark@oop",
+      userID:this.globals.userID,
       folder:"draft"
     },observe:'response'
 

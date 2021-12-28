@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NewMail} from'../table/table.component'
+import { Globals } from 'src/globals';
 let  mails: NewMail[]=[];
 const m = new NewMail()
+let fromMail:string=""
 @Component({
   selector: 'app-new-mail',
   templateUrl: './new-mail.component.html',
-  styleUrls: ['./new-mail.component.css']
+  styleUrls: ['./new-mail.component.css'],
+ 
 })
 
 export class NewMailComponent implements OnInit {
@@ -18,12 +21,15 @@ export class NewMailComponent implements OnInit {
   text:string=""
   x:string=""
  
-  constructor(private router : Router , private http:HttpClient) { 
+ 
+  constructor(private router : Router , private http:HttpClient,public globals: Globals) { 
     
       this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
       this.sub=  this.router.getCurrentNavigation()!.extras.state?.['head'] as string
       this.x= this.router.getCurrentNavigation()!.extras.state?.['importance'] as string
+     
+     
   }
 
 
@@ -40,15 +46,25 @@ export class NewMailComponent implements OnInit {
     var  s= ((document.getElementById("Subj") as HTMLInputElement).value);
     var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
-    
-    m.priority=pr
+    var prio:number;
+    if(pr=="Urgent"){
+      prio=4
+    }else if(pr=="High"){
+      prio=3
+    }else if(pr=="Medieum"){
+      prio=2
+    }else{
+      prio=1
+    }
+    m.priority=prio
+  
     m.toEmail=t
     m.subject=s
     m.body=txt
     m.attachement=this.attach
     m.date=new Date()
     m.id=0
-    m.fromEmail="mark@oop"
+    m.fromEmail=this.globals.getmail()
     console.log(m)
     var jsonString = JSON.stringify(m);
     this.http.post("http://localhost:8080/server/mail/send",jsonString,{responseType:'text'}).subscribe((data:any) =>{
@@ -72,6 +88,7 @@ export class NewMailComponent implements OnInit {
     m.attachement=this.attach
     m.date=new Date()
     m.id=0
+    m.fromEmail=this.globals.fromEmail
     console.log(m)
    }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewMail } from '../table/table.component';
 import { HttpClient } from '@angular/common/http';
+import { Globals } from 'src/globals';
 @Component({
   selector: 'app-sent',
   templateUrl: './sent.component.html',
@@ -39,7 +40,7 @@ export class SentComponent implements OnInit {
       }
      }
   }
-   constructor( private http : HttpClient) { 
+   constructor( private http : HttpClient,public globals: Globals) { 
     this.getsent()
    }
    
@@ -89,7 +90,7 @@ export class SentComponent implements OnInit {
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
-      userName:"mark@oop",
+      userID:this.globals.userID,
       folder:"sent"
     },observe:'response'
 
