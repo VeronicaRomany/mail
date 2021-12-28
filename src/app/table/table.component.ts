@@ -259,26 +259,21 @@ export class TableComponent implements OnInit {
    }
   }
 
-  delete(ID:any){
+  delete(ID:number){
 
-    const options = {
-      body: {
-           id: this.userID,
-           messageID:ID,
-           collection:"inbox"
-      },
-   };
-   
-   this.http .delete('http://localhost:8080/server/mail/delete', options).subscribe((s:any) => {
+   this.http .delete('http://localhost:8080/server/mail/delete',{responseType:'text',
+   params:{
+    id: this.globals.userID,
+    messageID:ID,
+    collection:"inbox"
+  }}).subscribe((s:any) => {
          console.log(s);
+         this.emails=[]
+         this.getinbox()
       });
-
-    this.emails=[]
-    this.getinbox()
   }
 
   getinbox(){
-    
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
@@ -300,7 +295,6 @@ export class TableComponent implements OnInit {
   }
   
  Search(){
- 
   this.http.get("http://localhost:8080/server/mail/search",{responseType:'text',
   params:{
     userID:this.userID,

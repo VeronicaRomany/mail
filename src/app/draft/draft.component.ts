@@ -124,35 +124,25 @@ export class DraftComponent implements OnInit {
 
   delete(ID:any){
    
-    this.drafts = []
+    this.http .delete('http://localhost:8080/server/mail/delete',{responseType:'text',
+    params:{
+     id: this.globals.userID,
+     messageID:ID,
+     collection:"draft"
+   }}).subscribe((s:any) => {
+          console.log(s);
+          this.drafts=[]
+          this.getdraft()
+       });
+   }
+  
    
 
-  }
+  
   goto(pr:string,to:string , subject:string ,mail:string){
    // this.router.navigate(['/NewMail'], { fragment:mail });
    this.router.navigate(['/NewMail'], { state: {importance:pr,reciever:to,head:subject, Mail: mail }})
   }
   
-  add(){
-
-  console.log("ana geeeeet")
-     // Get a reference to the table
-  var tableRef: HTMLTableElement = <HTMLTableElement> document.getElementById('t');
-
-  // Insert a row at the end of the table
-  let newRow = tableRef.insertRow(-1);
-
-  // Insert a cell in the row at index 0
-  let newCell = newRow.insertCell(0);
-
-  // Append a text node to the cell
-  let newText = document.createTextNode('newsender');
-  newCell.appendChild(newText);
-     
-  let newCell1 = newRow.insertCell(1);
-
-  // Append a text node to the cell
-  let newText1 = document.createTextNode('newsubject');
-  newCell1.appendChild(newText1);
-  }
+ 
 }

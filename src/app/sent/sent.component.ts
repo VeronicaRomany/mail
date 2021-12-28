@@ -83,7 +83,17 @@ export class SentComponent implements OnInit {
  
    delete(ID:any){
     
-     this.emails = []
+     
+    this.http .delete('http://localhost:8080/server/mail/delete',{responseType:'text',
+    params:{
+     id: this.globals.userID,
+     messageID:ID,
+     collection:"sent"
+   }}).subscribe((s:any) => {
+          console.log(s);
+          this.emails=[]
+          this.getsent()
+       });
     
  
    }
