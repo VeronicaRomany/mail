@@ -1,15 +1,16 @@
 <div class="text-center">
     <input class="form-control" type="file"  (change)="onChange($event)"  >
     <button *ngIf="flag" (click)="onUpload()"  class="btn btn-success" > Upload </button>
+    <button *ngIf="shortLink" (click)="deleteAttach($event)"  class="btn btn-success" > delete all attachments </button>
 </div>
 
 <!-- Shareable short link of  uoloaded file -->
-<div class="container text-center jumbotron" *ngIf="shortLink">
-   <h1>Done</h1>
+<div class="container text-center jumbotron" *ngIf="shortLink" style="color: white;">
+   <h1>Done ✅</h1>
   <!-- <a href="{{shortLink}}">{{shortLink}}</a> --> 
 </div>
   
 <!--Flag variable is used here-->
-<div class="container" *ngIf="loading">
+<div class="container" *ngIf="loading"style="color: white;">
     <h3>Loading ...</h3>
 </div>
