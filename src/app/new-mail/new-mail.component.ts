@@ -29,8 +29,6 @@ export class NewMailComponent implements OnInit {
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
       this.sub=  this.router.getCurrentNavigation()!.extras.state?.['head'] as string
       this.x= this.router.getCurrentNavigation()!.extras.state?.['importance'] as string
-     
-     
   }
 
 
@@ -82,7 +80,17 @@ export class NewMailComponent implements OnInit {
     var  txt= ((document.getElementById("Text") as HTMLInputElement).value);
     var pr= ((document.getElementById("priority") as HTMLInputElement).value);
     
-    m.priority=pr
+    var prio:number;
+    if(pr=="Urgent"){
+      prio=4
+    }else if(pr=="High"){
+      prio=3
+    }else if(pr=="Medieum"){
+      prio=2
+    }else{
+      prio=1
+    }
+    m.priority=prio
     m.toEmail=t
     m.subject=s
     m.body=txt
@@ -91,5 +99,9 @@ export class NewMailComponent implements OnInit {
     m.id=0
     m.fromEmail=this.globals.fromEmail
     console.log(m)
+    var jsonString = JSON.stringify(m);
+    this.http.post("http://localhost:8080/server/mail/addToDraft",jsonString,{responseType:'text'}).subscribe((data:any) =>{
+      console.log(data)
+    })
    }
 }

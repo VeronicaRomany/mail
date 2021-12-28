@@ -136,13 +136,9 @@ export class DraftComponent implements OnInit {
        });
    }
   
-   
-
-  
   goto(pr:string,to:string , subject:string ,mail:string){
    // this.router.navigate(['/NewMail'], { fragment:mail });
    this.router.navigate(['/NewMail'], { state: {importance:pr,reciever:to,head:subject, Mail: mail }})
   }
   
- 
 }

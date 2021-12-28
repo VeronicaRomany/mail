@@ -21,21 +21,20 @@ login:any = FormGroup;
   }
 
   loginSubmit(data:any){
-    let idntifier=""
-    
+   
     this.globals.fromEmail= ((document.getElementById("mail") as HTMLInputElement).value);
     
     console.log(this.globals.fromEmail)
+
     const body = ((document.getElementById("mail") as HTMLInputElement).value);
+
     this.http.post('http://localhost:8080/server/user/login',body,{responseType:'text'}).subscribe(response =>{
       console.log(response)
-       idntifier=response
-       console.log(idntifier)
-       
-       this.globals.userID=idntifier
-       console.log(this.globals.userID)
-       this.router.navigate(['table'],{  fragment: idntifier});  
-       
+    if(response!="0"){
+      this.globals.userID=response
+      console.log(this.globals.userID)
+      this.router.navigate(['table'],{  fragment:this.globals.userID});  
+    }    
   });
      
        
