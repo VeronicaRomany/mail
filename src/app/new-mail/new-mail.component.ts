@@ -1,26 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {NewMail} from'../table/table.component'
 let  mails: NewMail[]=[];
-export class NewMail {
-  constructor() { 
-    this.fromEmail=""
-    this.toEmail=""
-    this.subject=""
-    this.body=""
-    this.attachement=""
-    this.priority=0;
-    this.ID=0;
-  }
-  fromEmail: string;
-  toEmail :string;
-  subject:string;
-  body:string; 
-  attachement:string;
-  priority:any;
-  date:any;
-  ID:number;
-}
 const m = new NewMail()
 @Component({
   selector: 'app-new-mail',
@@ -36,7 +18,7 @@ export class NewMailComponent implements OnInit {
   text:string=""
   x:string=""
  
-  constructor(private router : Router) { 
+  constructor(private router : Router , private http:HttpClient) { 
     
       this.text=  this.router.getCurrentNavigation()!.extras.state?.['Mail'] as string
       this.to=  this.router.getCurrentNavigation()!.extras.state?.['reciever'] as string
@@ -68,8 +50,14 @@ export class NewMailComponent implements OnInit {
     m.attachement=this.attach
     m.date=new Date()
     m.ID=0
+    m.fromEmail="mark@oop"
     console.log(m)
-   
+    var jsonString = JSON.stringify(m);
+    this.http.post("http://localhost:8080/server/mail/send",jsonString,{responseType:'text'}).subscribe((data:any) =>{
+      console.log(data)
+    
+  
+    })
    }
 
    draft(){
