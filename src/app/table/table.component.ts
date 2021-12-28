@@ -295,11 +295,13 @@ export class TableComponent implements OnInit {
   }
   
  Search(){
+   var word=  ((document.getElementById("search") as HTMLInputElement).value);
+   console.log(word)
   this.http.get("http://localhost:8080/server/mail/search",{responseType:'text',
   params:{
     userID:this.userID,
     folder:"inbox",
-    searchWord: "sad"
+    searchWord: word
   },observe:'response'
 
   }).subscribe((data:any) =>{
