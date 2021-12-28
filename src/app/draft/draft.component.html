@@ -30,7 +30,7 @@
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
             <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.ID)" >View</button>
             <button  type="button" class="btn2" (click)="delete(item.ID)" >Delete</button>
-            <button  type="button" class="btn3" (click)="goto(item.priority,item.fromEmail,item.subject,item.body)" >Edit</button>
+            <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body)" >Edit</button>
     </tr>
   
      
