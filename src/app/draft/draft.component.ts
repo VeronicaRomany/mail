@@ -27,6 +27,30 @@ export class DraftComponent implements OnInit {
   this.getdraft()
  }
 
+ Search(){
+  var word=  ((document.getElementById("search") as HTMLInputElement).value);
+  console.log(word)
+ this.http.get("http://localhost:8080/server/mail/search",{responseType:'text',
+ params:{
+   userID:this.globals.userID,
+   folder:"draft",
+   searchWord: word
+ },observe:'response'
+
+ }).subscribe((data:any) =>{
+   console.log(data.body)
+ 
+  var jsonstr:string=data.body;
+  let jsonArr=JSON.parse(jsonstr)
+  this.drafts=[]
+  for(var i in jsonArr){
+
+    this.drafts.push(jsonArr[i])
+    console.log(this.drafts)
+  }
+ })
+ 
+}
  toggleEditable(event: any,ID:number) {
   console.log(ID)
     if ( event.target.checked ) {
@@ -140,5 +164,5 @@ export class DraftComponent implements OnInit {
    // this.router.navigate(['/NewMail'], { fragment:mail });
    this.router.navigate(['/NewMail'], { state: {importance:pr,reciever:to,head:subject, Mail: mail }})
   }
-  
+
 }

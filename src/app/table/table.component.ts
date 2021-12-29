@@ -141,7 +141,7 @@ export class TableComponent implements OnInit {
     console.log(x)
     this.http.get("http://localhost:8080/server/mail/filter",{responseType:'text',
     params:{
-      userName:"mark@oop",
+      userID:this.globals.userID,
       folder:"inbox",
       filters: x
     },observe:'response'
@@ -209,7 +209,9 @@ export class TableComponent implements OnInit {
     console.log(sender)
   }
   viewNext(ID:any){
+    console.log(ID)
     const index = this.emails.findIndex(item => item.id=== ID);
+    console.log(index)
     if(index!=this.emails.length-1){
       this.messageviewsender="From: \t"+this.emails[index+1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
@@ -248,8 +250,7 @@ export class TableComponent implements OnInit {
        this.selected.push(this.emails[index])
        console.log(this.selected)
    }else{
-    
-    
+
     const index = this.emails.findIndex(item => item.id === ID);
     this.selected.pop(this.emails[index])
     console.log(this.selected)
