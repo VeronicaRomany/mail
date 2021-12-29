@@ -7,7 +7,7 @@ import { filter } from '../table/table.component';
 @Component({
   selector: 'app-draft',
   templateUrl: './draft.component.html',
-  styleUrls: ['./draft.component.css']
+  styleUrls: ['./draft.component.css'],
 })
 export class DraftComponent implements OnInit {
   drafts: NewMail[]=[];
