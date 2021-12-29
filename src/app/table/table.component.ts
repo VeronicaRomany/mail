@@ -10,7 +10,7 @@ export class NewMail {
     this.toEmail=""
     this.subject=""
     this.body=""
-    this.attachement=""
+    this.attachement=[]
     this.priority=0;
     this.id=0;
   }
@@ -18,7 +18,7 @@ export class NewMail {
   toEmail :string;
   subject:string;
   body:string; 
-  attachement:string;
+  attachement:Array<string>;
   priority:any;
   date:any;
   id:number;
@@ -51,7 +51,7 @@ emails: NewMail[]=[];
  messageviewsubject:String=""
  messageviewmail:String=""
  messageviewdate:String=""
- messageviewattachment:String=""
+ messageviewattachment:Array<String>=[]
  messageviewpriority:String=""|| ''
  lastId:number | undefined
  multiMails:string=""
@@ -267,7 +267,9 @@ emails: NewMail[]=[];
       this.messageviewdate="Date :\t"+this.emails[index+1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
       this.messageviewmail=this.emails[index+1].body; 
-      this.messageviewattachment=this.emails[index+1].attachement
+      for(let i = 0 ; i<this.emails[index+1].attachement.length ;i++){
+      this.messageviewattachment.push(this.emails[index+1].attachement[i])
+      }
       this.lastId=this.emails[index+1].id
     }
   }
@@ -279,7 +281,9 @@ emails: NewMail[]=[];
       this.messageviewdate="Date :\t"+this.emails[index-1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index-1].priority)
       this.messageviewmail=this.emails[index-1].body; 
-      this.messageviewattachment=this.emails[index-1].attachement
+      for(let i = 0 ; i<this.emails[index-1].attachement.length ;i++){
+        this.messageviewattachment.push(this.emails[index-1].attachement[i])
+        }
       this.lastId=this.emails[index-1].id
     }
   }

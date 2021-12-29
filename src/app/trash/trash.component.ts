@@ -14,7 +14,7 @@ export class TrashComponent implements OnInit {
   messageviewsubject:String=""
   messageviewmail:String=""
   messageviewdate:String=""
-  messageviewattachment:String=""
+  messageviewattachment:Array<String>=[]
   messageviewpriority:String=""|| ''
   lastId:number | undefined
   multiMails:string=""
@@ -265,7 +265,9 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index+1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index+1].priority)
        this.messageviewmail=this.trash[index+1].body; 
-       this.messageviewattachment=this.trash[index+1].attachement
+       for(let i = 0 ; i<this.trash[index+1].attachement.length ;i++){
+        this.messageviewattachment.push(this.trash[index+1].attachement[i])
+        }
        
        this.lastId=this.trash[index+1].id
      }
@@ -278,7 +280,9 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index-1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index-1].priority)
        this.messageviewmail=this.trash[index-1].body; 
-       this.messageviewattachment=this.trash[index-1].attachement
+       for(let i = 0 ; i<this.trash[index-1].attachement.length ;i++){
+        this.messageviewattachment.push(this.trash[index-1].attachement[i])
+        }
        
        this.lastId=this.trash[index-1].id
      }

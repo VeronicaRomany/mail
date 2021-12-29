@@ -15,7 +15,7 @@ export class SentComponent implements OnInit {
   messageviewmail:String=""
   
   messageviewdate:String=""
-  messageviewattachment:String=""
+  messageviewattachment:Array<String>=[]
   messageviewpriority:String=""|| ''
   lastId:number=0
 
@@ -226,7 +226,9 @@ joinFilterByReciever(event: any){
      this.messageviewdate="Date :\t"+this.emails[index].date; 
      this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index].priority)
      this.messageviewmail=this.emails[index].body; 
-     this.messageviewattachment=this.emails[index].attachement
+     for(let i = 0 ; i<this.emails[index+1].attachement.length ;i++){
+      this.messageviewattachment.push(this.emails[index+1].attachement[i])
+      }
      
    }
    changepriority(prioritynum : String){ 
@@ -268,7 +270,9 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.emails[index+1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
        this.messageviewmail=this.emails[index+1].body; 
-       this.messageviewattachment=this.emails[index+1].attachement
+       for(let i = 0 ; i<this.emails[index+1].attachement.length ;i++){
+        this.messageviewattachment.push(this.emails[index+1].attachement[i])
+        }
        this.lastId=this.emails[index+1].id
      }
    }
@@ -281,7 +285,9 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.emails[index-1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index-1].priority)
        this.messageviewmail=this.emails[index-1].body; 
-       this.messageviewattachment=this.emails[index-1].attachement
+       for(let i = 0 ; i<this.emails[index-1].attachement.length ;i++){
+        this.messageviewattachment.push(this.emails[index+1].attachement[i])
+        }
        this.lastId=this.emails[index-1].id
      }
    }

@@ -60,7 +60,9 @@ export class NewMailComponent implements OnInit {
     m.toEmail=t
     m.subject=s
     m.body=txt
-    m.attachement=this.attach
+    for(let i =0 ; i<this.globals.attachments.length;i++){
+    m.attachement.push(this.globals.attachments[i])
+    }
     m.date=new Date()
     m.id=0
     m.fromEmail=this.globals.getmail()
@@ -97,7 +99,9 @@ export class NewMailComponent implements OnInit {
     m.toEmail=t
     m.subject=s
     m.body=txt
-    m.attachement=this.attach
+    for(let i =0 ; i<this.globals.attachments.length;i++){
+      m.attachement.push(this.globals.attachments[i])
+      }
     m.date=new Date()
     m.id=0
     m.fromEmail=this.globals.fromEmail

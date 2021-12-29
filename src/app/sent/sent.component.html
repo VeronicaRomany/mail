@@ -83,7 +83,9 @@
       <p>{{messageviewdate}}</p>
       <p>{{messageviewpriority}}</p>
       <p>{{messageviewmail}}</p>
-      <p > <a href="{{messageviewattachment}}"target="_blank" rel="noopener noreferrer">{{messageviewattachment}}</a></p>
+      <div *ngFor ="let item of messageviewattachment">
+        <p  > <a href="{{item}}"target="_blank" rel="noopener noreferrer">{{item}}</a></p>
+      </div>
      
        
      <button (click)="viewNext(lastId)">Next </button>

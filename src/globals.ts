@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class Globals {
   userID: string = "";
   fromEmail:string=""
+  attachments:string[]=[]
   setUserID(user:string){
       this.userID=user
   }

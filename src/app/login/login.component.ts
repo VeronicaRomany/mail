@@ -11,19 +11,23 @@ import { Globals } from 'src/globals';
 })
 export class LoginComponent implements OnInit {
 login:any = FormGroup;
+check:string=""
   constructor(private fb: FormBuilder , private router: Router,private http:HttpClient,public globals: Globals) { }
 
   ngOnInit(): void {
     this.login= this.fb.group({
-      name:['',Validators.required],
+     
       email:['',Validators.required]
     })
   }
 
   loginSubmit(data:any){
-   
+   if (((document.getElementById("mail") as HTMLInputElement).value)==""){
+       this.check="please enter the email"
+   }
+   else{
     this.globals.fromEmail= ((document.getElementById("mail") as HTMLInputElement).value);
-    
+   
     console.log(this.globals.fromEmail)
 
     const body = ((document.getElementById("mail") as HTMLInputElement).value);
@@ -34,9 +38,13 @@ login:any = FormGroup;
       this.globals.userID=response
       console.log(this.globals.userID)
       this.router.navigate(['table'],{  fragment:this.globals.userID});  
-    }    
+    } 
+    else{
+    this.check="Sorry, we don't recognize this email." ;
+    (document.getElementById("mail") as HTMLInputElement).value="";
+    }   
   });
-     
+}
        
   }
 

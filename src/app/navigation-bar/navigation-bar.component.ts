@@ -2,7 +2,7 @@ import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRe
 import { NewFolderComponent } from '../new-folder/new-folder.component';
 import { TableComponent } from '../table/table.component';
 import {HttpClient} from '@angular/common/http'
-
+import { Globals } from 'src/globals';
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
@@ -10,11 +10,11 @@ import {HttpClient} from '@angular/common/http'
 })
 export class NavigationBarComponent implements OnInit {
   f:string=""
- 
+  User:string=""
   @ViewChild('newFolder',{read:ViewContainerRef}) Folder !:ViewContainerRef 
 
-  constructor(private resolver :ComponentFactoryResolver ,private http:HttpClient) { 
-    
+  constructor(private resolver :ComponentFactoryResolver ,private http:HttpClient,public globals: Globals) { 
+    this.User =this.globals.fromEmail
   }
   
 

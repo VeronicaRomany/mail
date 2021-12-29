@@ -15,7 +15,7 @@ export class DraftComponent implements OnInit {
   messageviewsubject:String=""
   messageviewmail:String=""
   messageviewdate:String=""
-  messageviewattachment:String=""
+  messageviewattachment:Array<String>=[]
   messageviewpriority:String=""|| ''
   lastId:number | undefined
 
@@ -292,7 +292,9 @@ joinFilterByPriority(event: any){
     this.messageviewdate="Date :\t"+this.drafts[index].date; 
     this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index].priority)
     this.messageviewmail=this.drafts[index].body; 
-    this.messageviewattachment=this.drafts[index].attachement
+    for(let i = 0 ; i<this.drafts[index].attachement.length ;i++){
+      this.messageviewattachment.push(this.drafts[index].attachement[i])
+      }
   }
   changepriority(prioritynum : String){ 
     var pr =""
@@ -330,7 +332,9 @@ joinFilterByPriority(event: any){
       this.messageviewdate="Date :\t"+this.drafts[index+1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index+1].priority)
       this.messageviewmail=this.drafts[index+1].body; 
-      this.messageviewattachment=this.drafts[index+1].attachement
+      for(let i = 0 ; i<this.drafts[index+1].attachement.length ;i++){
+        this.messageviewattachment.push(this.drafts[index+1].attachement[i])
+        }
       
       this.lastId=this.drafts[index+1].id
         }
@@ -343,7 +347,9 @@ joinFilterByPriority(event: any){
       this.messageviewdate="Date :\t"+this.drafts[index-1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index-1].priority)
       this.messageviewmail=this.drafts[index-1].body; 
-      this.messageviewattachment=this.drafts[index-1].attachement
+      for(let i = 0 ; i<this.drafts[index-1].attachement.length ;i++){
+        this.messageviewattachment.push(this.drafts[index-1].attachement[i])
+        }
       
       this.lastId=this.drafts[index-1].id
     }

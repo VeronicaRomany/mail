@@ -10,18 +10,26 @@ import { Globals } from 'src/globals';
 })
 export class RegisterComponent implements OnInit {
 register:any = FormGroup;
-
+check:string=""
   constructor(private fb:FormBuilder,private router: Router,private http:HttpClient,public globals: Globals) { }
 
   ngOnInit(): void {
     this.register = this.fb.group({
-      name:['',Validators.required],
-      email:['',Validators.compose([Validators.required,Validators.email])]
+     
+     email:['',Validators.compose([Validators.required,Validators.email])]
     })
   }
 
   registerSubmit(data:any){
-    const body = ((document.getElementById("newMember") as HTMLInputElement).value);
+    var body = ((document.getElementById("newMember") as HTMLInputElement).value);
+    var emailCheckRegex=/^[a-zA-Z\d]+@oop$/gm
+    var flag:boolean=emailCheckRegex.test(body)
+    if(!flag){
+      (document.getElementById("newMember") as HTMLInputElement).value=''
+     this.check="wrong format"
+    }
+    else{
+
     this.http.post<boolean>('http://localhost:8080/server/user/register', body).subscribe(next =>{
       console.log(next)
       if(next){
@@ -36,7 +44,7 @@ register:any = FormGroup;
         }  
     });
   }
-});
+});}
   }
 
 gotToLogin(){

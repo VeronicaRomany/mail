@@ -3,6 +3,7 @@ import { Component, OnInit ,Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { empty } from 'rxjs';
 import { FileUploadService } from './file-upload.service';
+import { Globals } from 'src/globals';
   
 @Component({
     selector: 'app-file-upload',
@@ -19,10 +20,10 @@ export class FileUploadComponent  {
     loading: boolean = false; // Flag variable
     file: FileList = {} as FileList; // Variable to store file
   //file:string[]=[]
-    attachments:string[]=[]
+    
     
     // Inject service 
-    constructor(private fileUploadService: FileUploadService) { }
+    constructor(private fileUploadService: FileUploadService ,public globals: Globals) { }
   
     @Output() public link = new EventEmitter();
     
@@ -37,7 +38,7 @@ export class FileUploadComponent  {
        //}
     } 
     deleteAttach(event:any){
-        this.attachments=[]
+        this.globals.attachments=[]
         this.shortLink = ""; 
         this.flag=false;
        
@@ -57,8 +58,8 @@ export class FileUploadComponent  {
                     // Short link via api response
                     this.shortLink = event.link;
                     this.link.emit(event.link) 
-                    this.attachments.push(event.link)
-                    console.log(this.attachments)
+                    this.globals.attachments.push(event.link)
+                    console.log(this.globals.attachments)
                     this.loading = false; // Flag variable 
                   
                 }
