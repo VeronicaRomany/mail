@@ -151,7 +151,7 @@ export class TrashComponent implements OnInit {
     params:{
       userID:this.globals.userID,
       folder:"trash",
-      filters: x
+      filtersJSON: x
     },observe:'response'
 
     }).subscribe((data:any) =>{

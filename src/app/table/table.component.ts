@@ -156,18 +156,18 @@ emails: NewMail[]=[];
     f.priority=pr
     console.log(f)
 
-    var x= JSON.stringify(f)
-    console.log(x)
+   // var x= JSON.stringify(f)
+   // console.log(x)
     this.http.get("http://localhost:8080/server/mail/filter",{responseType:'text',
     params:{
       userID:this.globals.userID,
       folder:"inbox",
-      filters: x
+      filtersJSON:JSON.stringify(f)
     },observe:'response'
 
     }).subscribe((data:any) =>{
       console.log(data.body)
-    
+     this.emails=[]
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
      console.log(jsonArr)
