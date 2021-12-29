@@ -271,7 +271,8 @@ emails: NewMail[]=[];
       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
       this.messageviewmail=this.emails[index+1].body; 
       
-      this.messageviewattachment.length=0
+     // this.messageviewattachment.length=0
+     this.messageviewattachment=[]
       console.log(this.emails[index+1].attachement.length)
       for(let i = 0 ; i<this.emails[index+1].attachement.length ;i++){
       this.messageviewattachment.push(this.emails[index+1].attachement[i])
@@ -289,6 +290,7 @@ emails: NewMail[]=[];
       this.messageviewmail=this.emails[index-1].body; 
       
     //  this.messageviewattachment.length=0
+    this.messageviewattachment=[]
       console.log(this.emails)
       console.log(this.emails[index-1].attachement.length)
       for(let i = 0 ; i<this.emails[index-1].attachement.length ;i++){

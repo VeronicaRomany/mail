@@ -227,7 +227,9 @@ joinFilterByReciever(event: any){
      this.messageviewdate="Date :\t"+this.trash[index].date; 
      this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index].priority)
      this.messageviewmail=this.trash[index].body; 
-     this.messageviewattachment=this.trash[index].attachement
+     for(let i=0 ; i< this.trash[index].attachement.length;i++){
+      this.messageviewattachment.push(this.trash[index].attachement[i])
+    }
    }
    changepriority(prioritynum : String){ 
     var pr =""
@@ -265,7 +267,8 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index+1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index+1].priority)
        this.messageviewmail=this.trash[index+1].body; 
-       this.messageviewattachment.length=0
+      // this.messageviewattachment.length=0
+      this.messageviewattachment=[]
        for(let i = 0 ; i<this.trash[index+1].attachement.length ;i++){
         this.messageviewattachment.push(this.trash[index+1].attachement[i])
         }
@@ -281,7 +284,8 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index-1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index-1].priority)
        this.messageviewmail=this.trash[index-1].body; 
-       this.messageviewattachment.length=0
+      // this.messageviewattachment.length=0
+      this.messageviewattachment=[]
        for(let i = 0 ; i<this.trash[index-1].attachement.length ;i++){
         this.messageviewattachment.push(this.trash[index-1].attachement[i])
         }

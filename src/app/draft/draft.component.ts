@@ -332,7 +332,8 @@ joinFilterByPriority(event: any){
       this.messageviewdate="Date :\t"+this.drafts[index+1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index+1].priority)
       this.messageviewmail=this.drafts[index+1].body; 
-      this.messageviewattachment.length=0
+     // this.messageviewattachment.length=0
+     this.messageviewattachment=[]
       for(let i = 0 ; i<this.drafts[index+1].attachement.length ;i++){
         this.messageviewattachment.push(this.drafts[index+1].attachement[i])
         }
@@ -348,7 +349,8 @@ joinFilterByPriority(event: any){
       this.messageviewdate="Date :\t"+this.drafts[index-1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index-1].priority)
       this.messageviewmail=this.drafts[index-1].body; 
-      this.messageviewattachment.length=0
+      //this.messageviewattachment.length=0
+      this.messageviewattachment=[]
       for(let i = 0 ; i<this.drafts[index-1].attachement.length ;i++){
         this.messageviewattachment.push(this.drafts[index-1].attachement[i])
         }
