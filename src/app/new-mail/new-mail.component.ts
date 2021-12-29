@@ -68,13 +68,15 @@ export class NewMailComponent implements OnInit {
     m.fromEmail=this.globals.getmail()
     console.log(m)
     var jsonString = JSON.stringify(m);
+    var emailCheckRegex=/^(?:[a-zA-Z\d]+@[a-zA-Z]+)(?:,?[a-zA-Z\d]+@[a-zA-Z]+)+$/gm
+    var flag:boolean=emailCheckRegex.test(t)
     this.http.post("http://localhost:8080/server/mail/send",jsonString,{responseType:'text'}).subscribe((data:any) =>{
       console.log(data);
     
       ((document.getElementById("Too") as HTMLInputElement).value)="";
        ((document.getElementById("Subj") as HTMLInputElement).value)="";
       ((document.getElementById("Text") as HTMLInputElement).value)="";
-       ((document.getElementById("priority") as HTMLInputElement).value)=""
+       ((document.getElementById("priority") as HTMLInputElement).value)="";
     })
    }
 

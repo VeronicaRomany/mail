@@ -44,7 +44,7 @@
 <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
     <thead class="thead">
     <tr>
-       <th style="width: 50px">Select</th>
+     <!--<th style="width: 50px">Select</th> -->  
        <th style="width: 130px">Priority</th>
         <th style="width:130px">To</th>
         <th style="width: 130px">Subject</th>
@@ -55,14 +55,14 @@
 
 
     <tr *ngFor ="let item of drafts" style="color: white; background-color: grey;">
-        <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
+       <!-- <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td> --> 
         <td>{{changePr(item.priority)}}</td>
         <td>{{item.fromEmail}}</td>
         <td>{{item.subject}}</td>
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
-            <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
-            <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
-            <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body,item.id)" >Edit</button>
+            <button  type="submit" class="btn1" style="margin-right:4px;" (click)="view(item.id)" >View</button>
+            <button  type="button" class="btn2" style="margin-right:4px;"  (click)="delete(item.id)" >Delete</button>
+            <button  type="button" class="btn3"   (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body,item.id)" >Edit</button>
     </tr>
   
      

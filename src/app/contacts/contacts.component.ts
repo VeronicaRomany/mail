@@ -38,7 +38,7 @@ export class ContactsComponent implements OnInit{
     this.getcontact()
   }
 
-   contacts: Contact[]=[];
+  contacts: Contact[]=[];
   anotherMail:any
   sortSelector:string=""
   isSomethingSelected:boolean=false;
@@ -89,11 +89,13 @@ export class ContactsComponent implements OnInit{
   multipleMails(){
     this.multiMails=""
      for(var i=0 ; i<this.selected.length;i++){
-       for(var j=0 ; j<this.selected[i].Accounts.length;j++){
+       for(var j=0 ; j<this.selected[i].contactAdresses.length;j++){
         if (i==0 && j==0){
-          this.multiMails=this.selected[i].Accounts[j]
+          this.multiMails=this.selected[i].contactAdresses[j]
+          console.log(this.multiMails)
         }else{
-          this.multiMails=this.multiMails+" , "+this.selected[i].Accounts[j]
+          this.multiMails=this.multiMails+" , "+this.selected[i].contactAdresses[j]
+          console.log(this.multiMails)
         }
        }
      }
