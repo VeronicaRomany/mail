@@ -61,7 +61,14 @@
     background-color: #cc4b46; /* Green */
     color: white;
   }
-
+  .dropdown1{
+    width: 10%;
+    padding: 12px 20px;
+    margin: 8px 3px;
+    box-sizing: border-box;
+    border: 2px solid #1c0d74; 
+    border-radius: 2px;
+  }
   .btn3{
     color: #000000;
     background-color: #ffffff;

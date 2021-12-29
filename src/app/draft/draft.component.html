@@ -1,10 +1,41 @@
-
 <app-navigation-bar></app-navigation-bar>
 <form class="form-inline md-form mr-auto mb-4">
-  <input class="search" type="text" style="margin:5px;" placeholder="Search" >
-  <button id="word" class="search-btn" style="margin:5px;">Search</button>
+  <input class="search" id="search"type="text" style="margin:5px;" placeholder="Search" >
+  <button  class="search-btn" style="margin:5px;" (click)="Search()">Search</button>
   <button class="clear-btn" (click)="getdraft()">clear</button>
-  <button *ngIf="isSomethingSelected"  (click)="deleteSelected()">Delete Selected</button>
+  <select id="sort" name="sort" class="dropdown1"  (change)="SortBy()">
+    <option value="" disabled selected>Sort By</option>
+    <option value="none">None</option>
+    <option value="date">Date</option>
+    <option value="sender">Sender</option>
+    <option value="subject">Subject</option>
+    <option value="priority">Importance</option>
+    <option value="body">Body</option>
+    <option value="attachment">Attachments</option>
+  </select>
+
+  <button  class="search-btn" (click)="filterBy()">Filter</button>
+  <button *ngIf="filter" class="clear-btn" (click)="filterConfirmation()" style="margin-left: 0.5%;">Confirm </button>
+  <br>
+  <div style="margin-left: 60%;">
+    <input *ngIf="recieverFlag" type="checkbox" (change)="joinFilterByReciever($event)">
+    <label *ngIf="recieverFlag" style="color: white;">By Reciever</label>
+    <input type="text" id="recieverFilter" *ngIf="confirmrecieverFlag" placeholder="Reciever">
+    <br>
+  <input *ngIf="subjectFlag" type="checkbox" (change)="joinFilterBySubject($event)">
+  <label *ngIf="subjectFlag" style="color: white;">By Subject</label>
+  <input type="text" id="subjectFilter" *ngIf="confirmsubjectFlag" placeholder="Subject">
+  <br>
+  <input *ngIf="priorityFlag" type="checkbox" (change)="joinFilterByPriority($event)">
+  <label *ngIf="priorityFlag" style="color: white;">By Priority</label>
+  <select *ngIf="confirmpriorityFlag" name="Priority" id="priority" >
+    <option value="Urgent">Urgent</option>
+    <option value="High">High</option>
+    <option value="Medieum">Medium</option>
+    <option value="low">Low</option>
+  </select>
+  </div>
+  
 </form>
 
 
@@ -31,7 +62,7 @@
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
             <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
             <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
-            <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body)" >Edit</button>
+            <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body,item.id)" >Edit</button>
     </tr>
   
      
