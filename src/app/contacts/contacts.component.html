@@ -36,16 +36,17 @@
       </tr>
          </thead>
 
-      <tr *ngFor ="let item of Contacts" style="color: white; background-color: grey;" >
-            <td><input type="checkbox" (change)="toggleEditable($event,item.name)"></td>
-            <td>{{item.name}}</td>
+      <tr *ngFor ="let item of contacts" style="color: white; background-color: grey;" >
+            <td><input type="checkbox" (change)="toggleEditable($event,item.contactID)"></td>
+            <td>{{item.contactName}}</td>
              <td>
-              <div *ngFor ="let x of item.Accounts">
-                {{x}} &nbsp; &nbsp; &nbsp;
-                <a routerLink="/NewMail" routerLinkActive="active" (click)="msg(x)" >send mail</a> 
+              <div  *ngFor ="let x of item.contactAdresses">
+               {{x}}  &nbsp; &nbsp; &nbsp;
+                <a class="emails" routerLink="/NewMail" routerLinkActive="active" (click)="msg(x)" >send mail</a> 
+                <br>
             </div>
              </td>
-             <td><button  type="button" class="btn2" (click)="startEdit(item.id)" >Edit Contact</button></td>
+             <td><button  type="button" class="btn2" (click)="startEdit(item.contactID)" >Edit Contact</button></td>
           </tr>
           
          

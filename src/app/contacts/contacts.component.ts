@@ -1,6 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,  NavigationExtras, Router } from '@angular/router';
-export class Contact{
+import { Globals } from 'src/globals';
+export class Contact {
+  constructor(){
+       this.contactName="",
+       this.contactAdresses= [],
+       this.contactID=0
+  }
+  contactName : string;
+  contactAdresses: Array<string>;
+  contactID:number;
+}
+export class NewContact{
   constructor(){
     this.name=""
     this.mail1=""
@@ -11,20 +23,25 @@ export class Contact{
   mail2:string;
 }
 
-const con = new Contact();
+const con = new NewContact();
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit{
+  userID: string;
   
-  constructor(private router: Router, private route: ActivatedRoute) { }
-  Contacts = [
-    {name:"Mark", Accounts: ["mark@oop.com","Markoo@oop.com"] , id :"1"},
-    {name:"Tony", Accounts: ["t@oop.com"], id: "2"},
-    {name:"veroo", Accounts: ["vr@oop.com","vecoo@oop"], id: "3"}
-  ]
+  constructor(private http:HttpClient,private router : Router,public globals: Globals) { 
+    this.userID= this.globals.userID
+    this.getcontact()
+  }
+  /*Contacts = [
+    {contactName:"Mark", contactAdresses: ["mark@oop.com","Markoo@oop.com"] , contactId:1},
+    {contactName:"Tony",contactAdresses: ["t@oop.com"],contactId: 2},
+    {contactName:"veroo", contactAdresses: ["vr@oop.com","vecoo@oop"], contactId: 3}
+  ]*/
+   contacts: Contact[]=[];
   anotherMail:any
   sortSelector:string=""
   isSomethingSelected:boolean=false;
@@ -33,7 +50,25 @@ export class ContactsComponent implements OnInit{
   INDEX:number=0;
   deleteThisIDs:any=[]
   selected:any=[]
+  getcontact(){
+    console.log("sasasas")
+    this.http.get("http://localhost:8080/server/user/getContacts",{responseType:'text',
+    params:{
+      userID:this.userID,
+    },observe:'response'
 
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     this.contacts=[]
+     for(var i in jsonArr){
+       this.contacts.push(jsonArr[i])
+       console.log(this.contacts)
+     }
+    })
+  }
   whichChangeTodo(){
     let change = ((document.getElementById("selection") as HTMLInputElement).value)
     if(change=="send"){
@@ -49,7 +84,7 @@ export class ContactsComponent implements OnInit{
         this.deleteThisIDs.push(this.selected[i].id)
      }
      console.log(this.deleteThisIDs)
-     this.Contacts=[]
+        this.contacts=[]
      // hna hn3ml delete request ll contacts then hn3ml request y get al contacts
      this.isSomethingSelected=false;
   }
@@ -69,15 +104,15 @@ export class ContactsComponent implements OnInit{
      this.isSomethingSelected=false;
    }
 
-   toggleEditable(event: any,ID:string) {
+   toggleEditable(event: any,ID:number) {
     if ( event.target.checked ) {
        this.isSomethingSelected=true;
-       const index = this.Contacts.findIndex(item => item.name === ID);
-       this.selected.push(this.Contacts[index])
+       const index = this.contacts.findIndex(item => item.contactID === ID);
+       this.selected.push(this.contacts[index])
        console.log(this.selected)
    }else{
-    const index = this.Contacts.findIndex(item => item.name === ID);
-    this.selected.pop(this.Contacts[index])
+    const index = this.contacts.findIndex(item => item.contactID === ID);
+    this.selected.pop(this.contacts[index])
     console.log(this.selected)
     if(this.selected.length==0){
       this.isSomethingSelected=false;
@@ -91,7 +126,7 @@ export class ContactsComponent implements OnInit{
   SortBy(){
     this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
     console.log(this.sortSelector)
-    this.Contacts=[]
+    this.contacts=[]
     //request sort
   }
 
@@ -99,17 +134,17 @@ msg(mail:string){
  this.router.navigate(['/NewMail'], { state: { reciever: mail }})
 }
 
-startEdit(id:string){
+startEdit(id:number){
   this.EDIT=true;
-  const index = this.Contacts.findIndex(item => item.id === id);
+  const index = this.contacts.findIndex(item => item.contactID === id);
   this.INDEX=index;
 }
 
 confirmEdit(){
   var  newest= ((document.getElementById("edit") as HTMLInputElement).value);
   console.log(newest)
-  this.Contacts[this.INDEX].name=newest
-  console.log(this.Contacts[this.INDEX].name)
+  this.contacts[this.INDEX].contactName=newest
+  console.log(this.contacts[this.INDEX].contactName)
   // request b al id w alt3del 
   this.EDIT=false;
 }
@@ -148,7 +183,7 @@ toggle(){
 searchabout(){
   let wordToSearch=((document.getElementById("search") as HTMLInputElement).value);
   console.log(wordToSearch)
-  this.Contacts=[]
+  this.contacts=[]
   //request search
 }
 
