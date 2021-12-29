@@ -12,6 +12,10 @@ export class SentComponent implements OnInit {
   messageviewname:String=""
   messageviewsubject:String=""
   messageviewmail:String=""
+  
+  messageviewdate:String=""
+  messageviewattachment:String=""
+  messageviewpriority:String=""|| ''
   lastId:number=0
 
 
@@ -54,8 +58,37 @@ export class SentComponent implements OnInit {
      const index = this.emails.findIndex(item => item.id === x);
      this.messageviewname="From : \t"+this.emails[index].toEmail;
      this.messageviewsubject="Subject : \t"+this.emails[index].subject;
-     this.messageviewmail=this.emails[index].body;
+     this.messageviewdate="Date :\t"+this.emails[index].date; 
+     this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index].priority)
+     this.messageviewmail=this.emails[index].body; 
+     this.messageviewattachment=this.emails[index].attachement
+     
    }
+   changepriority(prioritynum : String){ 
+    var pr =""
+    if(prioritynum=="1"){ 
+      pr="Low"
+      return pr
+
+    }else if(prioritynum=="2"){
+      
+      pr="Medium"
+      return pr
+
+    }else if(prioritynum=="3"){
+      
+      pr="High"
+      return pr
+
+    }else{
+ 
+      
+      pr="Urgent"
+      return pr
+    }
+
+
+  }
 
    msg(name:string){
      console.log(name)
@@ -65,7 +98,12 @@ export class SentComponent implements OnInit {
      if(index!=this.emails.length-1){
        this.messageviewname="From: \t"+this.emails[index+1].toEmail;
        this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
-       this.messageviewmail=this.emails[index+1].body;
+       
+       
+       this.messageviewdate="Date :\t"+this.emails[index+1].date; 
+       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
+       this.messageviewmail=this.emails[index+1].body; 
+       this.messageviewattachment=this.emails[index+1].attachement
        this.lastId=this.emails[index+1].id
      }
    }
@@ -74,7 +112,11 @@ export class SentComponent implements OnInit {
      if(index!=0){
        this.messageviewname="From: \t"+this.emails[index-1].toEmail;
        this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
-       this.messageviewmail=this.emails[index-1].body;
+       
+       this.messageviewdate="Date :\t"+this.emails[index-1].date; 
+       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index-1].priority)
+       this.messageviewmail=this.emails[index-1].body; 
+       this.messageviewattachment=this.emails[index-1].attachement
        this.lastId=this.emails[index-1].id
      }
    }

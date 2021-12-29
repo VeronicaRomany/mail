@@ -262,18 +262,24 @@ emails: NewMail[]=[];
     const index = this.emails.findIndex(item => item.id=== ID);
     console.log(index)
     if(index!=this.emails.length-1){
-      this.messageviewsender="From: \t"+this.emails[index+1].fromEmail;
-      this.messageviewsubject="Subject: \t"+this.emails[index+1].subject;
-      this.messageviewmail=this.emails[index+1].body;
+      this.messageviewsender="From : \t"+this.emails[index+1].fromEmail;
+      this.messageviewsubject="Subject : \t"+this.emails[index+1].subject;
+      this.messageviewdate="Date :\t"+this.emails[index+1].date; 
+      this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
+      this.messageviewmail=this.emails[index+1].body; 
+      this.messageviewattachment=this.emails[index+1].attachement
       this.lastId=this.emails[index+1].id
     }
   }
   viewPrev(ID:any){
     const index = this.emails.findIndex(item => item.id === ID);
     if(index!=0){
-      this.messageviewsender="From: \t"+this.emails[index-1].fromEmail;
-      this.messageviewsubject="Subject: \t"+this.emails[index-1].subject;
-      this.messageviewmail=this.emails[index-1].body;
+      this.messageviewsender="From : \t"+this.emails[index-1].fromEmail;
+      this.messageviewsubject="Subject : \t"+this.emails[index-1].subject;
+      this.messageviewdate="Date :\t"+this.emails[index-1].date; 
+      this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index-1].priority)
+      this.messageviewmail=this.emails[index-1].body; 
+      this.messageviewattachment=this.emails[index-1].attachement
       this.lastId=this.emails[index-1].id
     }
   }
