@@ -52,6 +52,7 @@ emails: NewMail[]=[];
  messageviewmail:String=""
  messageviewdate:String=""
  messageviewattachment:String=""
+ messageviewpriority:String=""|| ''
  lastId:number | undefined
  multiMails:string=""
  senderFlag:boolean=false;
@@ -223,9 +224,35 @@ emails: NewMail[]=[];
     console.log(index)
     this.messageviewsender="From : \t"+this.emails[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
-    this.messageviewdate="Date :\t"+this.emails[index].date;
+    this.messageviewdate="Date :\t"+this.emails[index].date; 
+    this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index].priority)
     this.messageviewmail=this.emails[index].body; 
     this.messageviewattachment=this.emails[index].attachement
+  } 
+  changepriority(prioritynum : String){ 
+    var pr =""
+    if(prioritynum=="1"){ 
+      pr="Low"
+      return pr
+
+    }else if(prioritynum=="2"){
+      
+      pr="Medium"
+      return pr
+
+    }else if(prioritynum=="3"){
+      
+      pr="High"
+      return pr
+
+    }else{
+ 
+      
+      pr="Urgent"
+      return pr
+    }
+
+
   }
   msg(sender:string){
     console.log(sender)
