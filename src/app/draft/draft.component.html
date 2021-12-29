@@ -60,9 +60,9 @@
         <td>{{item.fromEmail}}</td>
         <td>{{item.subject}}</td>
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
-            <button  type="submit" class="btn1" style="margin:2px;" (click)="view(item.id)" >View</button>
-            <button  type="button" class="btn2" (click)="delete(item.id)" >Delete</button>
-            <button  type="button" class="btn3" (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body,item.id)" >Edit</button>
+            <button  type="submit" class="btn1" style="margin-right:4px;" (click)="view(item.id)" >View</button>
+            <button  type="button" class="btn2" style="margin-right:4px;"  (click)="delete(item.id)" >Delete</button>
+            <button  type="button" class="btn3"   (click)="goto(changePr(item.priority),item.fromEmail,item.subject,item.body,item.id)" >Edit</button>
     </tr>
   
      

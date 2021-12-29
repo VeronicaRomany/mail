@@ -39,26 +39,34 @@
   }
   .btn1{
     color: #000000;
-    background-color: #ffffff;
+    background-color: #47a15c;
     border: 2px solid #47a15c; 
     border-radius: 2px;
     padding: 5px 12px;
     transition-duration: 0.4s;
   }
-  .btn1:hover {
+  .btn1{
     background-color: #47a15c; /* Green */
+    color: white;
+    border: 1px solid #47a15c; 
+    border-radius: 2px;
+    padding: 5px 12px;
+    transition-duration: 0.4s;
+  }
+  .btn1:hover {
+    background-color: #6caa7b; /* Green */
     color: white;
   }
   .btn2{
-    color: #000000;
-    background-color: #ffffff;
-    border: 2px solid #cc4b46; 
+    background-color: #cc4b46; /* Green */
+    color: white;
+    border: 1px solid #cc4b46; 
     border-radius: 2px;
     padding: 5px 12px;
     transition-duration: 0.4s;
   }
   .btn2:hover {
-    background-color: #cc4b46; /* Green */
+    background-color: #dd625e; /* Green */
     color: white;
   }
   .dropdown1{
@@ -70,15 +78,15 @@
     border-radius: 2px;
   }
   .btn3{
-    color: #000000;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #732ad3;
     border: 2px solid #732ad3; 
     border-radius: 2px;
     padding: 5px 12px;
     transition-duration: 0.4s;
   }
   .btn3:hover {
-    background-color: #7136be; /* Green */
+    background-color: #875ebd; /* Green */
     color: white;
   }
   .search-btn{
@@ -115,4 +123,8 @@
     background-color: black;
     color: wheat;
   
+  }
+  p{
+    font-size: 20px;
+    padding: 2%;
   }
