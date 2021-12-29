@@ -13,6 +13,8 @@ import { NewFolderComponent } from './new-folder/new-folder.component';
 import { TrashComponent } from './trash/trash.component';
 import { SentComponent } from './sent/sent.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+
 
 
 const routes: Routes = [
@@ -27,7 +29,8 @@ const routes: Routes = [
   {path:'createFolder',component:NewFolderComponent},
   {path:'trash',component:TrashComponent},
   {path:'sent',component:SentComponent},
-  { path: 'logOut',component: LogOutComponent},
+  {path: 'logOut',component: LogOutComponent},
+  {path: 'Delete',component: DeleteAccountComponent}
   ];
 
 @NgModule({
