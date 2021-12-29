@@ -50,6 +50,7 @@ emails: NewMail[]=[];
  messageviewsender:String=""
  messageviewsubject:String=""
  messageviewmail:String=""
+ messageviewdate:String=""
  lastId:number | undefined
  multiMails:string=""
  senderFlag:boolean=false;
@@ -221,6 +222,7 @@ emails: NewMail[]=[];
     console.log(index)
     this.messageviewsender="From : \t"+this.emails[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.emails[index].subject;
+    this.messageviewdate="Date :\t"+this.emails[index].date;
     this.messageviewmail=this.emails[index].body;
   }
   msg(sender:string){
