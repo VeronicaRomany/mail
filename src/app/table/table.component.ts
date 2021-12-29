@@ -227,7 +227,10 @@ emails: NewMail[]=[];
     this.messageviewdate="Date :\t"+this.emails[index].date; 
     this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index].priority)
     this.messageviewmail=this.emails[index].body; 
-    this.messageviewattachment=this.emails[index].attachement
+    for(let i=0 ; i< this.emails[index].attachement.length;i++){
+      this.messageviewattachment.push(this.emails[index].attachement[i])
+    }
+  //  this.messageviewattachment=this.emails[index].attachement
   } 
   changepriority(prioritynum : String){ 
     var pr =""
@@ -267,6 +270,9 @@ emails: NewMail[]=[];
       this.messageviewdate="Date :\t"+this.emails[index+1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index+1].priority)
       this.messageviewmail=this.emails[index+1].body; 
+      
+      this.messageviewattachment.length=0
+      console.log(this.emails[index+1].attachement.length)
       for(let i = 0 ; i<this.emails[index+1].attachement.length ;i++){
       this.messageviewattachment.push(this.emails[index+1].attachement[i])
       }
@@ -281,6 +287,10 @@ emails: NewMail[]=[];
       this.messageviewdate="Date :\t"+this.emails[index-1].date; 
       this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index-1].priority)
       this.messageviewmail=this.emails[index-1].body; 
+      
+    //  this.messageviewattachment.length=0
+      console.log(this.emails)
+      console.log(this.emails[index-1].attachement.length)
       for(let i = 0 ; i<this.emails[index-1].attachement.length ;i++){
         this.messageviewattachment.push(this.emails[index-1].attachement[i])
         }

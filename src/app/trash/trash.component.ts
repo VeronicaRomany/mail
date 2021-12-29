@@ -265,6 +265,7 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index+1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index+1].priority)
        this.messageviewmail=this.trash[index+1].body; 
+       this.messageviewattachment.length=0
        for(let i = 0 ; i<this.trash[index+1].attachement.length ;i++){
         this.messageviewattachment.push(this.trash[index+1].attachement[i])
         }
@@ -280,6 +281,7 @@ joinFilterByReciever(event: any){
        this.messageviewdate="Date :\t"+this.trash[index-1].date; 
        this.messageviewpriority="Priority : \t"+this.changepriority(this.trash[index-1].priority)
        this.messageviewmail=this.trash[index-1].body; 
+       this.messageviewattachment.length=0
        for(let i = 0 ; i<this.trash[index-1].attachement.length ;i++){
         this.messageviewattachment.push(this.trash[index-1].attachement[i])
         }
