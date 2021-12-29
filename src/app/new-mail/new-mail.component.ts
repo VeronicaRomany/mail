@@ -67,9 +67,12 @@ export class NewMailComponent implements OnInit {
     console.log(m)
     var jsonString = JSON.stringify(m);
     this.http.post("http://localhost:8080/server/mail/send",jsonString,{responseType:'text'}).subscribe((data:any) =>{
-      console.log(data)
+      console.log(data);
     
-  
+      ((document.getElementById("Too") as HTMLInputElement).value)="";
+       ((document.getElementById("Subj") as HTMLInputElement).value)="";
+      ((document.getElementById("Text") as HTMLInputElement).value)="";
+       ((document.getElementById("priority") as HTMLInputElement).value)=""
     })
    }
 
@@ -101,7 +104,12 @@ export class NewMailComponent implements OnInit {
     console.log(m)
     var jsonString = JSON.stringify(m);
     this.http.post("http://localhost:8080/server/mail/addToDraft",jsonString,{responseType:'text'}).subscribe((data:any) =>{
-      console.log(data)
+      console.log(data);
+    
+      ((document.getElementById("Too") as HTMLInputElement).value)="";
+       ((document.getElementById("Subj") as HTMLInputElement).value)="";
+      ((document.getElementById("Text") as HTMLInputElement).value)="";
+       ((document.getElementById("priority") as HTMLInputElement).value)=""
     })
    }
 }
