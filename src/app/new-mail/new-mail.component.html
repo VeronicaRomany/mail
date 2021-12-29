@@ -16,12 +16,12 @@
   <br><br>
     <form>
       <div>
-    <textarea name="to" id="Too" cols="100" rows="1"placeholder="example@oop" style="margin-left: 10px ;">{{to}}</textarea>
+    <input name="to" id="Too" class="to"type="text" cols="100" placeholder="example@oop" style="margin-left: 10px ;"[(ngModel)]="to" />
     </div>
     <br> 
-    <textarea name="subject" id="Subj" cols="100" rows="1" placeholder="Subject" style="margin-left: 10px ;">{{sub}}</textarea>
-    <br> 
-    <textarea name="text" id="Text" cols="100" rows="20" placeholder="Mail"style="margin-left: 10px ;">{{text}}</textarea>
+    <input name="subject" type="text" class="sub" id="Subj" placeholder="Subject" style="margin-left: 10px ;" [(ngModel)]="sub"/>
+    <br> <br>
+    <textarea name="text" id="Text" type="text"class="text" placeholder="Mail"style="margin-left: 10px ;" rows="20" [(ngModel)]="text" ></textarea>
     <br> 
    
     <app-file-upload (link)="attach=$event" style="color: white;"></app-file-upload>
