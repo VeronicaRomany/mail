@@ -24,6 +24,7 @@ export class NewContact{
 }
 
 const con = new NewContact();
+
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
@@ -36,11 +37,7 @@ export class ContactsComponent implements OnInit{
     this.userID= this.globals.userID
     this.getcontact()
   }
-  /*Contacts = [
-    {contactName:"Mark", contactAdresses: ["mark@oop.com","Markoo@oop.com"] , contactId:1},
-    {contactName:"Tony",contactAdresses: ["t@oop.com"],contactId: 2},
-    {contactName:"veroo", contactAdresses: ["vr@oop.com","vecoo@oop"], contactId: 3}
-  ]*/
+
    contacts: Contact[]=[];
   anotherMail:any
   sortSelector:string=""
@@ -52,6 +49,7 @@ export class ContactsComponent implements OnInit{
   selected:any=[]
   getcontact(){
     console.log("sasasas")
+    this.contacts=[]
     this.http.get("http://localhost:8080/server/user/getContacts",{responseType:'text',
     params:{
       userID:this.userID,
@@ -124,10 +122,32 @@ export class ContactsComponent implements OnInit{
   }
 
   SortBy(){
-    this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
+    
     console.log(this.sortSelector)
     this.contacts=[]
     //request sort
+    this.http.get("http://localhost:8080/server/user/sortContacts",{responseType:'text',
+ 
+  params:{
+    userID:this.userID,
+    
+  },observe:'response'
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+      
+      this.contacts=[]
+      console.log(data.body)
+  
+   var jsonstr:string=data.body;
+   let jsonArr=JSON.parse(jsonstr)
+   this.contacts=[]
+   for(var i in jsonArr){
+
+     this.contacts.push(jsonArr[i])
+     console.log(this.contacts)
+   }
+    })
+
   }
 
 msg(mail:string){
@@ -140,13 +160,40 @@ startEdit(id:number){
   this.INDEX=index;
 }
 
+delete(ID:any){
+  this.http .delete('http://localhost:8080/server/user/deleteContact',{responseType:'text',
+  params:{
+    userID: this.globals.userID,
+    contactID:ID
+ 
+ }}).subscribe((s:any) => {
+        console.log(s);
+        this.contacts=[]
+        this.getcontact()
+     });
+}
+
 confirmEdit(){
   var  newest= ((document.getElementById("edit") as HTMLInputElement).value);
   console.log(newest)
   this.contacts[this.INDEX].contactName=newest
   console.log(this.contacts[this.INDEX].contactName)
   // request b al id w alt3del 
-  this.EDIT=false;
+
+  this.http.get("http://localhost:8080/server/user/editContact",{responseType:'text',
+ 
+  params:{
+    userID:this.userID,
+    contactID:this.contacts[this.INDEX].contactID,
+    newName: newest
+  },observe:'response'
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+      this.EDIT=false;
+      this.contacts=[]
+     this.getcontact()
+    })
+  
 }
 
 openForm() {
@@ -158,18 +205,28 @@ closeForm() {
 }
 
 newContact(){
-  con.name= ((document.getElementById("Name") as HTMLInputElement).value);
-  con.mail1= ((document.getElementById("Mail") as HTMLInputElement).value);
+  const newCon = new Contact();
+  newCon.contactName= ((document.getElementById("Name") as HTMLInputElement).value);
+  newCon.contactAdresses.push(((document.getElementById("Mail") as HTMLInputElement).value));
   if(this.anotherMail){
-    con.mail2=((document.getElementById("Mail2") as HTMLInputElement).value);
-  }else{
-    con.mail2=""
-  }
+    newCon.contactAdresses.push(((document.getElementById("Mail2") as HTMLInputElement).value));
   
- 
-  console.log(con)
+  }
+  console.log(newCon)
   //send request with con
-  // send request get contact
+  
+  this.http.get("http://localhost:8080/server/user/addContact",{responseType:'text',
+ 
+  params:{
+    userID:this.userID,
+    contactJSON:JSON.stringify(newCon)
+  },observe:'response'
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+    this.getcontact()
+    })
+ 
 }
 
 NewInput(){
@@ -185,10 +242,33 @@ searchabout(){
   console.log(wordToSearch)
   this.contacts=[]
   //request search
+  this.http.get("http://localhost:8080/server/user/searchContacts",{responseType:'text',
+ 
+  params:{
+    userID:this.userID,
+    searchWord:wordToSearch
+  },observe:'response'
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+      
+      this.contacts=[]
+      console.log(data.body)
+  
+   var jsonstr:string=data.body;
+   let jsonArr=JSON.parse(jsonstr)
+   this.contacts=[]
+   for(var i in jsonArr){
+
+     this.contacts.push(jsonArr[i])
+     console.log(this.contacts)
+   }
+    })
+
 }
 
 endsearch(){
-  ((document.getElementById("search") as HTMLInputElement).value)=""
+ // ((document.getElementById("search") as HTMLInputElement).value)=""
   //request get contact
+  this.getcontact()
 }
 }

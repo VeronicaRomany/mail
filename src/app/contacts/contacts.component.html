@@ -2,13 +2,15 @@
 <div class="form-inline md-form mr-auto mb-4">
     <input class="search" type="text" style="margin:5px;" placeholder="Search" id="search">
     <button  class="search-btn" style="margin-right: 10px;" (click)="searchabout()">Search</button>
+    <button  class="search-btn" style="margin-right: 10px;" (click)="SortBy()">Sort</button>
     <button class="clear-btn" (click)="endsearch()" >clear</button>
+<!-- 
     <select id="sort" name="sort" class="dropdown1" (change)="SortBy()">
       <option value="" disabled selected>Sort By</option>
       <option value="none">None</option>
       <option value="Contact">Contact</option>
     </select>
-  <!-- <button *ngIf="isSomethingSelected"  (click)="multipleMails()">Send to Selected</button> -->  
+  <button *ngIf="isSomethingSelected"  (click)="multipleMails()">Send to Selected</button> -->  
     <select *ngIf="isSomethingSelected" id="selection" name="selection" class="dropdown1"  (change)="whichChangeTodo()">
       <option value="" disabled selected>Selected</option>
       <option value="send">Send Mails</option>
@@ -47,6 +49,7 @@
             </div>
              </td>
              <td><button  type="button" class="btn2" (click)="startEdit(item.contactID)" >Edit Contact</button></td>
+             <td><button  type="button" class="btn2" (click)="delete(item.contactID)" >Delete</button></td>
           </tr>
           
          
