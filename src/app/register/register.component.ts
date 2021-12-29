@@ -26,12 +26,16 @@ check:string=""
     var flag:boolean=emailCheckRegex.test(body)
     if(!flag){
       (document.getElementById("newMember") as HTMLInputElement).value=''
-     this.check="wrong format"
+     this.check="wrong"
     }
     else{
 
     this.http.post<boolean>('http://localhost:8080/server/user/register', body).subscribe(next =>{
       console.log(next)
+      if(next==false){
+        this.check="email in use"
+      }
+      else{
       if(next){
         this.http.post('http://localhost:8080/server/user/login',body,{responseType:'text'}).subscribe(response =>{
           console.log(response)
@@ -43,7 +47,7 @@ check:string=""
           this.router.navigate(['table'],{  fragment:this.globals.userID});  
         }  
     });
-  }
+  }}
 });}
   }
 

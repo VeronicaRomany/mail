@@ -49,7 +49,7 @@
 <table id="t" class="left" type ="table"style="width:45% , margin:5px:" >
     <thead class="thead">
     <tr>
-       <th style="width: 50px">Select</th>
+     <!--  <th style="width: 50px">Select</th>--> 
         <th style="width:130px">Sender</th>
         <th style="width:410px">Subject</th>
         <th style="width:150px"></th>
@@ -59,7 +59,7 @@
 
 
     <tr *ngFor ="let item of trash" style="color: white; background-color: grey;">
-        <td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>
+        <!--<td><input type="checkbox" (change)="toggleEditable($event,item.id)"></td>-->
         <td>{{item.fromEmail}}</td>
         <td>{{item.subject}}</td>
         <!--<a routerLink="/NewMail" routerLinkActive="active" (click)="msg(item.name)">Send mail</a>-->
