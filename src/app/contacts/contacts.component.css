@@ -17,6 +17,7 @@
       border-collapse: collapse;
       height: 60px;
       font-size: 15px;
+      text-shadow: 2px 2px 7px black;
       
     }
     th{
