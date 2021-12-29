@@ -13,11 +13,11 @@
     <option value="body">Body</option>
     <option value="attachment">Attachments</option>
   </select>
-<br>
-  <button (click)="filterBy()">Filter</button>
-  <button *ngIf="filter" (click)="filterConfirmation()">Confirm </button>
- 
-  <div>
+
+  <button  class="search-btn" (click)="filterBy()">Filter</button>
+  <button *ngIf="filter" class="clear-btn" (click)="filterConfirmation()" style="margin-left: 0.5%;">Confirm </button>
+  <br>
+  <div style="margin-left: 60%;">
   <input *ngIf="senderFlag" type="checkbox" (change)="joinFilterBySender($event)" >
   <label *ngIf="senderFlag" style="color: white;">By Sender</label>
   <input type="text" id="senderFilter" *ngIf="confirmsenderFlag" placeholder="Sender">

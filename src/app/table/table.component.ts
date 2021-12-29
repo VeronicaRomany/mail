@@ -45,8 +45,8 @@ export class filter{
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  userID:string=""
-   emails: NewMail[]=[];
+userID:string=""
+emails: NewMail[]=[];
  messageviewsender:String=""
  messageviewsubject:String=""
  messageviewmail:String=""
@@ -79,6 +79,24 @@ export class TableComponent implements OnInit {
   SortBy(){
     this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
     console.log(this.sortSelector)
+    this.http.get("http://localhost:8080/server/mail/sort",{responseType:'text',
+    params:{
+      userID:this.globals.userID,
+      folder:"inbox",
+      criteria: this.sortSelector
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+      this.emails=[]
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+      console.log(this.emails)
+     }
+    })
   }
 
   filterBy(){
@@ -275,6 +293,7 @@ export class TableComponent implements OnInit {
   }
 
   getinbox(){
+    this.emails=[]
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
