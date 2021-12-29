@@ -11,9 +11,12 @@ import { Globals } from 'src/globals';
 export class DraftComponent implements OnInit {
   drafts: NewMail[]=[];
   messageviewname:String=""
- messageviewsubject:String=""
- messageviewmail:String=""
- lastId:number | undefined
+  messageviewsubject:String=""
+  messageviewmail:String=""
+  messageviewdate:String=""
+  messageviewattachment:String=""
+  messageviewpriority:String=""|| ''
+  lastId:number | undefined
 
  
  
@@ -121,6 +124,35 @@ export class DraftComponent implements OnInit {
     this.messageviewname="From : \t"+this.drafts[index].fromEmail;
     this.messageviewsubject="Subject : \t"+this.drafts[index].subject;
     this.messageviewmail=this.drafts[index].body;
+    this.messageviewdate="Date :\t"+this.drafts[index].date; 
+    this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index].priority)
+    this.messageviewmail=this.drafts[index].body; 
+    this.messageviewattachment=this.drafts[index].attachement
+  }
+  changepriority(prioritynum : String){ 
+    var pr =""
+    if(prioritynum=="1"){ 
+      pr="Low"
+      return pr
+
+    }else if(prioritynum=="2"){
+      
+      pr="Medium"
+      return pr
+
+    }else if(prioritynum=="3"){
+      
+      pr="High"
+      return pr
+
+    }else{
+ 
+      
+      pr="Urgent"
+      return pr
+    }
+
+
   }
   msg(name:string){
     console.log(name)
@@ -130,7 +162,11 @@ export class DraftComponent implements OnInit {
     if(index!=this.drafts.length-1){
       this.messageviewname="From: \t"+this.drafts[index+1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.drafts[index+1].subject;
-      this.messageviewmail=this.drafts[index+1].body;
+      this.messageviewdate="Date :\t"+this.drafts[index+1].date; 
+      this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index+1].priority)
+      this.messageviewmail=this.drafts[index+1].body; 
+      this.messageviewattachment=this.drafts[index+1].attachement
+      
       this.lastId=this.drafts[index+1].id
         }
   }
@@ -139,7 +175,11 @@ export class DraftComponent implements OnInit {
     if(index!=0){
       this.messageviewname="From: \t"+this.drafts[index-1].fromEmail;
       this.messageviewsubject="Subject: \t"+this.drafts[index-1].subject;
-      this.messageviewmail=this.drafts[index-1].body;
+      this.messageviewdate="Date :\t"+this.drafts[index-1].date; 
+      this.messageviewpriority="Priority : \t"+this.changepriority(this.drafts[index-1].priority)
+      this.messageviewmail=this.drafts[index-1].body; 
+      this.messageviewattachment=this.drafts[index-1].attachement
+      
       this.lastId=this.drafts[index-1].id
     }
   }
