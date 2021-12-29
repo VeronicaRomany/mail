@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewMail } from '../table/table.component';
 import { HttpClient } from '@angular/common/http';
 import { Globals } from 'src/globals';
+import { filter } from '../table/table.component';
 @Component({
   selector: 'app-sent',
   templateUrl: './sent.component.html',
@@ -19,8 +20,172 @@ export class SentComponent implements OnInit {
   lastId:number=0
 
 
-  isSomethingSelected:boolean=false;
+  select :boolean=false;
   selected:any=[]
+  senderFlag:boolean=false;
+  recieverFlag:boolean=false;
+  subjectFlag:boolean=false;
+  priorityFlag:boolean=false;
+  confirmsenderFlag:boolean=false;
+  confirmrecieverFlag:boolean=false;
+  confirmsubjectFlag:boolean=false;
+  confirmpriorityFlag:boolean=false;
+  filter:boolean=false;
+  sortSelector:string="";
+  isSomethingSelected:boolean=false;
+
+
+  SortBy(){
+    this.sortSelector= ((document.getElementById("sort") as HTMLInputElement).value);
+    console.log(this.sortSelector)
+    this.http.get("http://localhost:8080/server/mail/sort",{responseType:'text',
+    params:{
+      userID:this.globals.userID,
+      folder:"sent",
+      criteria: this.sortSelector
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+      this.emails=[]
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+      console.log(this.emails)
+     }
+    })
+  }
+
+  filterBy(){
+    this.filter=!this.filter;
+    if(this.filter){
+    this.senderFlag=true;
+    this.subjectFlag=true;
+    this.priorityFlag=true;
+    this.recieverFlag=true;
+    console.log("on")
+    }else{
+      this.stopFilter()
+      console.log("off")
+    }
+    
+  }
+  filterConfirmation(){
+    var sender;
+    var subject;
+    var pr;
+    var priority;
+    var reciever;
+   
+
+    if(this.confirmrecieverFlag){
+      reciever= ((document.getElementById("recieverFilter") as HTMLInputElement).value);
+     
+    }else{
+      reciever=""
+    }
+    
+    if(this.confirmsubjectFlag){
+      subject= ((document.getElementById("subjectFilter") as HTMLInputElement).value);
+     
+    }else{
+      subject=""
+    }
+    
+    if(this.confirmpriorityFlag){
+        priority= ((document.getElementById("priority") as HTMLInputElement).value);
+      
+      if(priority=="Urgent"){
+        pr=4
+      }else if(priority=="High"){
+        pr=3
+      }else if(priority=="Medieum"){
+        pr=2
+      }else{
+        pr=1
+      }
+     
+     
+    }else{
+      pr=0
+    }
+   
+    let f = new filter()
+    f.subject=subject
+   
+    f.priority=pr
+    f.receiver=reciever
+    console.log(f)
+
+    var x= JSON.stringify(f)
+    console.log(x)
+    this.http.get("http://localhost:8080/server/mail/filter",{responseType:'text',
+    params:{
+      userID:this.globals.userID,
+      folder:"sent",
+      filtersJSON: x
+    },observe:'response'
+
+    }).subscribe((data:any) =>{
+      console.log(data.body)
+    
+     var jsonstr:string=data.body;
+     let jsonArr=JSON.parse(jsonstr)
+     console.log(jsonArr)
+     this.emails=[]
+     for(var i in jsonArr){
+       this.emails.push(jsonArr[i])
+      console.log(this.emails)
+     }
+    })
+  }
+
+  stopFilter(){
+    this.confirmpriorityFlag=false;
+    this.confirmsenderFlag=false;
+    this.confirmsubjectFlag=false;
+    this.confirmrecieverFlag=false;
+    this.senderFlag=false;
+    this.subjectFlag=false;
+    this.priorityFlag=false;
+    this.recieverFlag=false;
+    this.filter=false;
+    this.emails=[]
+    this.getsent()
+  }
+  joinFilterBySender(event: any){
+    if (event.target.checked) {
+      this.confirmsenderFlag=true;
+  }else{
+    this.confirmsenderFlag=false;
+  }
+}
+
+joinFilterByReciever(event: any){
+  if (event.target.checked) {
+    this.confirmrecieverFlag=true;
+}else{
+  this.confirmrecieverFlag=false;
+}
+}
+  joinFilterBySubject(event: any){
+    if (event.target.checked) {
+      this.confirmsubjectFlag=true
+    }else{
+      this.confirmsubjectFlag=false;
+    }
+  }
+
+  joinFilterByPriority(event: any){
+    if (event.target.checked) {
+
+      this.confirmpriorityFlag=true
+   }else{
+    this.confirmpriorityFlag=false;
+   }
+  }
 
   deleteSelected(){
     // send array selected f request
@@ -140,7 +305,9 @@ export class SentComponent implements OnInit {
  
    }
   getsent(){
-    console.log("sasasas")
+    this.emails=[]
+    console.log("sasasas");
+   // ((document.getElementById("search") as HTMLInputElement).value)="";
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
       userID:this.globals.userID,
@@ -161,5 +328,29 @@ export class SentComponent implements OnInit {
     })
   }
  
+  Search(){
+    var word=  ((document.getElementById("search") as HTMLInputElement).value);
+    console.log(word)
+   this.http.get("http://localhost:8080/server/mail/search",{responseType:'text',
+   params:{
+     userID:this.globals.userID,
+     folder:"sent",
+     searchWord: word
+   },observe:'response'
+ 
+   }).subscribe((data:any) =>{
+     console.log(data.body)
+   
+    var jsonstr:string=data.body;
+    let jsonArr=JSON.parse(jsonstr)
+    this.emails=[]
+    for(var i in jsonArr){
+ 
+      this.emails.push(jsonArr[i])
+      console.log(this.emails)
+    }
+   })
+   
+  }
 
 }

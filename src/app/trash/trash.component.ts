@@ -39,7 +39,8 @@ export class TrashComponent implements OnInit {
    }
    getTrash(){
     console.log("sasasas")
-    this.trash=[]
+    this.trash=[];
+   // ((document.getElementById("search") as HTMLInputElement).value)="";
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
       userID:this.globals.userID,
@@ -52,6 +53,7 @@ export class TrashComponent implements OnInit {
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
      console.log(jsonArr)
+     this.trash=[];
      for(var i in jsonArr){
        this.trash.push(jsonArr[i])
      }
@@ -159,7 +161,7 @@ export class TrashComponent implements OnInit {
 
     }).subscribe((data:any) =>{
       console.log(data.body)
-    
+    this.trash=[]
      var jsonstr:string=data.body;
      let jsonArr=JSON.parse(jsonstr)
      console.log(jsonArr)
@@ -306,6 +308,8 @@ joinFilterByReciever(event: any){
 
 
 delete(ID:any){
+  console.log("welcome from trash delete msg")
+  console.log(ID)
     this.http .delete('http://localhost:8080/server/mail/delete',{responseType:'text',
     params:{
      id: this.globals.userID,

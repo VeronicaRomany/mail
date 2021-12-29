@@ -330,7 +330,9 @@ emails: NewMail[]=[];
   }
 
   getinbox(){
-    this.emails=[]
+    this.emails=[];
+    //y
+   // ((document.getElementById("search") as HTMLInputElement).value)="";
     console.log("sasasas")
     this.http.get("http://localhost:8080/server/user/getMailFolder",{responseType:'text',
     params:{
