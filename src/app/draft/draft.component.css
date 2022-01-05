@@ -124,7 +124,12 @@
     color: wheat;
   
   }
-  p{
+  
+  .MailText{
     font-size: 20px;
-    padding: 2%;
+    margin-top: 4%;
+    margin-left: 4%;
+    text-shadow: 2px 2px 7px black;
+    box-shadow: 10 10;
+    
   }
