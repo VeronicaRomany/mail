@@ -45,6 +45,7 @@ export class filter{
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  ////
 userID:string=""
 emails: NewMail[]=[];
  messageviewsender:String=""
