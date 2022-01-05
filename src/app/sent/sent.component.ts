@@ -221,7 +221,7 @@ joinFilterByReciever(event: any){
    view(x:any){
      this.lastId=x
      const index = this.emails.findIndex(item => item.id === x);
-     this.messageviewname="From : \t"+this.emails[index].toEmail;
+     this.messageviewname="To : \t"+this.emails[index].toEmail;
      this.messageviewsubject="Subject : \t"+this.emails[index].subject;
      this.messageviewdate="Date :\t"+this.emails[index].date; 
      this.messageviewpriority="Priority : \t"+this.changepriority(this.emails[index].priority)
